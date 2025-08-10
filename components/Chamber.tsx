@@ -36,7 +36,7 @@ const Chamber = () => {
               width="100%"
               height="100%"
               style={{ border: 0, position: 'absolute', left: 0, top: 0 }}
-              allowFullScreen=""
+              allowFullScreen={true}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
