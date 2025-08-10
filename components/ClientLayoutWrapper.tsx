@@ -27,9 +27,7 @@ const AppointmentModal = () => {
       aria-labelledby="modal-title"
       tabIndex={-1}
     >
-      <div
-        className="relative w-full max-w-lg scale-95 transform rounded-2xl bg-white p-8 shadow-2xl transition-all duration-300 ease-in-out hover:scale-100 dark:bg-gray-900"
-      >
+      <div className="relative w-full max-w-lg scale-95 transform rounded-2xl bg-white p-8 shadow-2xl transition-all duration-300 ease-in-out hover:scale-100 dark:bg-gray-900">
         <div className="text-center">
           <h2 id="modal-title" className="mb-2 text-3xl font-bold text-cyan-500">
             Book an Appointment
@@ -103,4 +101,3 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
     </AppointmentModalProvider>
   )
 }
-
