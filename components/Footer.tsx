@@ -7,7 +7,7 @@ export default function Footer() {
   const { openModal } = useAppointmentModal()
 
   return (
-    <footer>
+    <footer className="py-8 bg-gray-50 dark:bg-gray-950">
       <div className="mt-16 flex flex-col items-center space-y-4">
         <button
           onClick={openModal}

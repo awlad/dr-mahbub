@@ -190,15 +190,17 @@ function Version3() {
             </div>
             <div className="space-y-4">
               <h1 className="text-5xl font-extrabold">{siteMetadata.author}</h1>
-              <p className="text-2xl font-semibold">{siteMetadata.specialization}</p>
-              <a
-                href={`tel:${siteMetadata.phone.replace(/\s+/g, '')}`}
-                className="mt-4 inline-block rounded bg-cyan-500 px-6 py-3 font-semibold transition hover:bg-cyan-600"
-              >
-                Book Appointment
-              </a>
+              <p className="text-xl font-semibold md:text-2xl">{siteMetadata.specialization}</p>
             </div>
           </div>
+        <div className="flex">
+            <a
+                href={`tel:${siteMetadata.phone.replace(/\s+/g, '')}`}
+                className="mt-4 inline-block rounded bg-cyan-500 px-6 py-3 font-semibold transition hover:bg-cyan-600"
+            >
+                Book Appointment
+            </a>
+        </div>
         </div>
       </section>
       <Chamber />

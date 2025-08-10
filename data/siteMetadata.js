@@ -57,6 +57,7 @@ const siteMetadata = {
   phone: '09611530530',
   address:
     'Popular Diagnostic Centre Ltd. (Unit 1), House # 67, Avenue # 5, Block C, Section-6, Pallabi, Mirpur, Dhaka-1216, Bangladesh',
+  googleMapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0000000000005!2d90.36000000000001!3d23.800000000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQ4JzAwLjAiTiA5MMKwMjEnMzYuMCJF!5e0!3m2!1sen!2sbd!4v1678888888888!5m2!1sen!2sbd',
   specialization: 'Hepatologist (Liver Medicine & Gastroenterology)',
   qualifications: 'MBBS, FCPS (Medicine), MD (Internal Medicine), FACP (USA), FRCP (UK)',
   experience:
