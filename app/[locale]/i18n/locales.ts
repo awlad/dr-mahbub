@@ -1,2 +1,1 @@
-const locales = {};
-export default locales;
+export const languages = ['en']
