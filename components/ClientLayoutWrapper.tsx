@@ -19,10 +19,12 @@ const AppointmentModal = () => {
   return (
     <div
       className="bg-opacity-25 fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 backdrop-blur-sm"
-      onClick={closeModal}
+      onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
+      onKeyDown={(e) => { if (e.key === 'Escape') closeModal(); }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
+      tabIndex="-1"
     >
       <div
         className="relative w-full max-w-lg scale-95 transform rounded-2xl bg-white p-8 shadow-2xl transition-all duration-300 ease-in-out hover:scale-100 dark:bg-gray-900"
