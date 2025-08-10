@@ -30,7 +30,7 @@ const CallForSerial = () => {
 
 
 // Version 1 - Centered hero + carousel
-function Version2({ locale }: { locale: string }) {
+function Version2() {
   const [copied, setCopied] = useState(false)
   const [currentQual, setCurrentQual] = useState(0)
 
@@ -71,7 +71,7 @@ function Version2({ locale }: { locale: string }) {
 
           <CallForSerial />
         </section>
-        <Chamber locale={locale} />
+        <Chamber />
           <Achievements achievements={achievements} />
 
         <section className="max-w-5xl mx-auto px-4">
@@ -113,7 +113,7 @@ function Version2({ locale }: { locale: string }) {
 }
 
 // Version 2 - Split layout with side photo and inline qualifications
-function Version1({ locale }: { locale: string }) {
+function Version1() {
   const posts = allBlogs.slice(0, 3)
 
   return (
@@ -134,10 +134,12 @@ function Version1({ locale }: { locale: string }) {
 
             <p className="mt-4 text-gray-700">{siteMetadata.experience}</p>
 
-            <CallForSerial />
+              <div className="mt-2">
+                  <CallForSerial />
+              </div>
           </div>
         </section>
-        <Chamber locale={locale} />
+        <Chamber />
           <Qualifications qualifications={qualifications} />
         <Achievements achievements={achievements} />
 
@@ -168,7 +170,7 @@ function Version1({ locale }: { locale: string }) {
 }
 
 // Version 3 - Hero with background image + overlay
-function Version3({ locale }: { locale: string }) {
+function Version3() {
   const posts = allBlogs.slice(0, 3)
 
   return (
@@ -206,7 +208,7 @@ function Version3({ locale }: { locale: string }) {
             </div>
           </div>
         </section>
-        <Chamber locale={locale} />
+        <Chamber  />
 
         <section className="max-w-5xl mx-auto px-6 py-12 space-y-16">
           <Qualifications qualifications={qualifications} />
@@ -252,7 +254,7 @@ function Version3({ locale }: { locale: string }) {
   )
 }
 
-function Version4({ locale }: { locale: string }) {
+function Version4() {
   const posts = allBlogs.slice(0, 3)
 
   return (
@@ -280,7 +282,7 @@ function Version4({ locale }: { locale: string }) {
         </div>
       </div>
 
-      <Chamber locale={locale} />
+      <Chamber  />
       <Qualifications qualifications={qualifications} />
       <Achievements achievements={achievements} />
 
@@ -301,7 +303,7 @@ function Version4({ locale }: { locale: string }) {
   )
 }
 
-function Version5({ locale }: { locale: string }) {
+function Version5() {
   const posts = allBlogs.slice(0, 3)
 
   return (
@@ -331,7 +333,7 @@ function Version5({ locale }: { locale: string }) {
         </section>
 
         <div className="py-20 space-y-16">
-          <Chamber locale={locale} />
+          <Chamber  />
           <Qualifications qualifications={qualifications} />
           <Achievements achievements={achievements} />
         </div>
@@ -356,7 +358,7 @@ function Version5({ locale }: { locale: string }) {
 }
 
 
-export default function HomePageClient({ locale }: { locale: string }) {
+export default function HomePageClient() {
   const [version, setVersion] = useState(1)
 
   return (
@@ -384,11 +386,11 @@ export default function HomePageClient({ locale }: { locale: string }) {
         </div>
 
         <div className="max-w-5xl mx-auto sm:px-4 md:px-6">
-          {version === 1 && <Version1 locale={locale} />}
-          {version === 2 && <Version2 locale={locale} />}
-          {version === 3 && <Version3 locale={locale} />}
-          {version === 4 && <Version4 locale={locale} />}
-          {version === 5 && <Version5 locale={locale} />}
+          {version === 1 && <Version1  />}
+          {version === 2 && <Version2  />}
+          {version === 3 && <Version3  />}
+          {version === 4 && <Version4 />}
+          {version === 5 && <Version5 />}
         </div>
       </div>
   )

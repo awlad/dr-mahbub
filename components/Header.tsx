@@ -52,7 +52,7 @@ const Header = () => {
               )
             )}
         </div>
-        <LanguageSwitcher />
+        {/*<LanguageSwitcher />*/}
         <MobileNav />
       </div>
     </header>
