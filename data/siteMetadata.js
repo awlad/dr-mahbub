@@ -6,7 +6,7 @@ const siteMetadata = {
   description:
     'Experienced Hepatologist (Liver Medicine & Gastroenterology) in Mirpur, Dhaka — Former Professor & Head, Rangpur Medical College Hospital. Call 09611-530530 to book an appointment.',
   language: 'en-US',
-  theme: 'system', // system, dark or light
+  theme: 'light', // system, dark or light
   siteUrl: 'https://your-site-domain.com', // IMPORTANT: Replace with your actual domain
   siteRepo: '', // Add your repository URL here if you have one
   siteLogo: '/static/images/doctor.jpg',
