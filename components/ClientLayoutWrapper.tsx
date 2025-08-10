@@ -22,10 +22,6 @@ const AppointmentModal = () => {
   return (
     <div
       className="bg-opacity-25 fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 backdrop-blur-sm"
-      onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
-      onKeyDown={(e) => {
-        if (e.key === 'Escape') closeModal()
-      }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
@@ -107,3 +103,4 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
     </AppointmentModalProvider>
   )
 }
+
