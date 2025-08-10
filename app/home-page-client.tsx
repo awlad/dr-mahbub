@@ -193,14 +193,14 @@ function Version3() {
               <p className="text-xl font-semibold md:text-2xl">{siteMetadata.specialization}</p>
             </div>
           </div>
-        <div className="flex">
+          <div className="mt-8 text-center">
             <a
-                href={`tel:${siteMetadata.phone.replace(/\s+/g, '')}`}
-                className="mt-4 inline-block rounded bg-cyan-500 px-6 py-3 font-semibold transition hover:bg-cyan-600"
+              href={`tel:${siteMetadata.phone.replace(/\s+/g, '')}`}
+              className="inline-block w-full rounded bg-cyan-500 px-6 py-3 font-semibold transition hover:bg-cyan-600 md:w-auto"
             >
-                Book Appointment
+              Book Appointment
             </a>
-        </div>
+          </div>
         </div>
       </section>
       <Chamber />
