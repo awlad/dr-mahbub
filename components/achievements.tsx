@@ -1,6 +1,5 @@
 import Image from 'next/image'
 
-
 export default function Achievements({ achievements }) {
   return (
     <section className="my-8">
@@ -12,16 +11,16 @@ export default function Achievements({ achievements }) {
             className="rounded-lg border border-gray-300 bg-white p-4 shadow transition hover:shadow-lg dark:border-gray-700 dark:bg-gray-900"
           >
             {image && (
-                <div className="relative mb-3 h-40 w-full">
-                    <Image
-                        src={image}
-                        alt="Award"
-                        className="rounded-md object-cover"
-                        fill
-                        sizes="100vw"
-                        priority
-                    />
-                </div>
+              <div className="relative mb-3 h-40 w-full">
+                <Image
+                  src={image}
+                  alt="Award"
+                  className="rounded-md object-cover"
+                  fill
+                  sizes="100vw"
+                  priority
+                />
+              </div>
             )}
             <h3 className="mb-1 text-lg font-semibold">{title}</h3>
             <p className="mb-2 text-sm text-gray-600 italic dark:text-gray-400">{year}</p>

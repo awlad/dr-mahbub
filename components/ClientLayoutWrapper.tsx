@@ -21,7 +21,7 @@ const AppointmentModal = () => {
       className="bg-opacity-25 fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 backdrop-blur-sm"
       onClick={closeModal}
       onKeyDown={(e) => e.key === 'Escape' && closeModal()}
-      role="button"
+      role="dialog"
       tabIndex={0}
       aria-modal="true"
       aria-labelledby="modal-title"
