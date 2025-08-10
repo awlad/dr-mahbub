@@ -24,7 +24,7 @@ const AppointmentModal = () => {
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      tabIndex="-1"
+      tabIndex={-1}
     >
       <div
         className="relative w-full max-w-lg scale-95 transform rounded-2xl bg-white p-8 shadow-2xl transition-all duration-300 ease-in-out hover:scale-100 dark:bg-gray-900"
