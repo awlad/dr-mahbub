@@ -73,8 +73,15 @@ export async function generateMetadata(props: {
   }
 }
 
+import { languages } from '@/app/[locale]/i18n/locales'
+
 export const generateStaticParams = async () => {
-  return allBlogs.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
+  return languages.flatMap((locale) =>
+    allBlogs.map((p) => ({
+      slug: p.slug.split('/').map((name) => decodeURI(name)),
+      locale,
+    }))
+  )
 }
 
 export default async function Page(props: { params: Promise<{ slug: string[] }> }) {

@@ -5,11 +5,15 @@ import { notFound } from 'next/navigation'
 
 const POSTS_PER_PAGE = 5
 
+import { languages } from '@/app/[locale]/i18n/locales'
+
 export const generateStaticParams = async () => {
   const totalPages = Math.ceil(allBlogs.length / POSTS_PER_PAGE)
-  const paths = Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }))
+  const paths = Array.from({ length: totalPages }, (_, i) => ({
+    page: (i + 1).toString(),
+  }))
 
-  return paths
+  return languages.flatMap((locale) => paths.map((path) => ({ ...path, locale })))
 }
 
 export default async function Page(props: { params: Promise<{ page: string }> }) {

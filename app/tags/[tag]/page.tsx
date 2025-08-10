@@ -26,12 +26,17 @@ export async function generateMetadata(props: {
   })
 }
 
+import { languages } from '@/app/[locale]/i18n/locales'
+
 export const generateStaticParams = async () => {
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
-  return tagKeys.map((tag) => ({
-    tag: encodeURI(tag),
-  }))
+  return languages.flatMap((locale) =>
+    tagKeys.map((tag) => ({
+      tag: encodeURI(tag),
+      locale,
+    }))
+  )
 }
 
 export default async function TagPage(props: { params: Promise<{ tag: string }> }) {

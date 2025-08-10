@@ -7,16 +7,21 @@ import { notFound } from 'next/navigation'
 
 const POSTS_PER_PAGE = 5
 
+import { languages } from '@/app/[locale]/i18n/locales'
+
 export const generateStaticParams = async () => {
   const tagCounts = tagData as Record<string, number>
-  return Object.keys(tagCounts).flatMap((tag) => {
-    const postCount = tagCounts[tag]
-    const totalPages = Math.max(1, Math.ceil(postCount / POSTS_PER_PAGE))
-    return Array.from({ length: totalPages }, (_, i) => ({
-      tag: encodeURI(tag),
-      page: (i + 1).toString(),
-    }))
-  })
+  return languages.flatMap((locale) =>
+    Object.keys(tagCounts).flatMap((tag) => {
+      const postCount = tagCounts[tag]
+      const totalPages = Math.max(1, Math.ceil(postCount / POSTS_PER_PAGE))
+      return Array.from({ length: totalPages }, (_, i) => ({
+        tag: encodeURI(tag),
+        page: (i + 1).toString(),
+        locale,
+      }))
+    })
+  )
 }
 
 export default async function TagPage(props: { params: Promise<{ tag: string; page: string }> }) {

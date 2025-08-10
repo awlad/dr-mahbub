@@ -1,9 +1,10 @@
-import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
-import { allBlogs } from 'contentlayer/generated'
-import Main from './Main'
+import { languages } from '@/app/[locale]/i18n/locales'
+import HomePageClient from './home-page-client'
 
-export default async function Page() {
-  const sortedPosts = sortPosts(allBlogs)
-  const posts = allCoreContent(sortedPosts)
-  return <Main posts={posts} />
+export async function generateStaticParams() {
+  return languages.map((locale) => ({ locale }))
+}
+
+export default function Home({ params: { locale } }: { params: { locale: string } }) {
+  return <HomePageClient locale={locale} />
 }
