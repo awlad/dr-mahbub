@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useState }' from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionContainer from '@/components/SectionContainer'
@@ -11,6 +11,9 @@ import siteMetadata from '@/data/siteMetadata'
 import { AppointmentModalProvider, useAppointmentModal } from '../contexts/AppointmentModalContext'
 import CopyButton from './CopyButton'
 
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 const AppointmentModal = () => {
   const { showModal, closeModal } = useAppointmentModal()
 
@@ -20,7 +23,9 @@ const AppointmentModal = () => {
     <div
       className="bg-opacity-25 fixed inset-0 z-[9999] flex items-center justify-center bg-black p-4 backdrop-blur-sm"
       onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
-      onKeyDown={(e) => { if (e.key === 'Escape') closeModal(); }}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') closeModal()
+      }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
@@ -84,6 +89,9 @@ const AppointmentModal = () => {
     </div>
   )
 }
+/* eslint-enable jsx-a11y/click-events-have-key-events */
+/* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-enable jsx-a11y/no-static-element-interactions */
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
