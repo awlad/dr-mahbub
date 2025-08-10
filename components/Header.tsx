@@ -19,7 +19,7 @@ const Header = () => {
             <Logo />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
-            <div className="hidden h-6 text-2xl font-semibold sm:block text-gray-900 dark:text-gray-100">
+            <div className="hidden h-6 text-2xl font-semibold text-gray-900 sm:block dark:text-gray-100">
               {siteMetadata.headerTitle}
             </div>
           ) : (
@@ -29,7 +29,7 @@ const Header = () => {
       </Link>
 
       <div className="flex items-center space-x-4 leading-5">
-        <div className="hidden sm:flex items-center space-x-6">
+        <div className="hidden items-center space-x-6 sm:flex">
           {headerNavLinks
             .filter((link) => link.path !== '/')
             .map((link) =>
@@ -37,7 +37,7 @@ const Header = () => {
                 <button
                   key={link.title}
                   onClick={openModal}
-                  className="px-4 py-2 font-semibold text-white bg-cyan-500 rounded-md hover:bg-cyan-600 transition-colors"
+                  className="rounded-md bg-cyan-500 px-4 py-2 font-semibold text-white transition-colors hover:bg-cyan-600"
                 >
                   {link.title}
                 </button>
@@ -45,7 +45,7 @@ const Header = () => {
                 <Link
                   key={link.title}
                   href={link.path}
-                  className="font-medium text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
+                  className="font-medium text-gray-700 transition-colors hover:text-cyan-500 dark:text-gray-300 dark:hover:text-cyan-400"
                 >
                   {link.title}
                 </Link>
