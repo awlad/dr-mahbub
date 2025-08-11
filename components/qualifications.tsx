@@ -1,4 +1,9 @@
-export default function Qualifications({ qualificationsString, qualifications }) {
+type QualificationsProps = {
+  qualificationsString?: string
+  qualifications?: { title: string; description: string }[]
+}
+
+export default function Qualifications({ qualificationsString, qualifications }: QualificationsProps) {
   let qualificationsArray = []
 
   if (typeof qualificationsString === 'string') {
