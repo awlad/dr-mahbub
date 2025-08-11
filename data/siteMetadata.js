@@ -1,10 +1,10 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Prof. Dr. Muhammad Mahbub Hussain – Hepatologist, Mirpur, Dhaka',
-  author: 'Prof. Dr. Muhammad Mahbub Hussain',
+  title: 'Professor Dr. Muhammad Mahbub Hussain - Hepatologist & Gastroenterologist in Dhaka',
+  author: 'Professor Dr. Muhammad Mahbub Hussain',
   headerTitle: 'Dr. M. Mahbub Hussain',
   description:
-    'Experienced Hepatologist (Liver Medicine & Gastroenterology) in Mirpur, Dhaka — Former Professor & Head, Rangpur Medical College Hospital. Call 09611-530530 to book an appointment.',
+    'Professor Dr. Muhammad Mahbub Hussain is a leading Hepatologist (Liver Medicine & Gastroenterology) Specialist in Dhaka. For appointments, call 09611530530.',
   language: 'en-US',
   theme: 'light', // system, dark or light
   siteUrl: 'https://your-site-domain.com', // IMPORTANT: Replace with your actual domain
@@ -56,12 +56,12 @@ const siteMetadata = {
   },
   phone: '09611530530',
   address:
-    'Popular Diagnostic Centre Ltd. (Unit 1), House # 67, Avenue # 5, Block C, Section-6, Pallabi, Mirpur, Dhaka-1216, Bangladesh',
+    'Popular Diagnostic Centre Ltd. | Mirpur (Unit 1), House # 67, Avenue # 5, Block # C, Section-6 Mirpur, (Original-10),Pallabi, Dhaka, Dhaka-1216, Bangladesh',
   googleMapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0000000000005!2d90.36000000000001!3d23.800000000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQ4JzAwLjAiTiA5MMKwMjEnMzYuMCJF!5e0!3m2!1sen!2sbd!4v1678888888888!5m2!1sen!2sbd',
   specialization: 'Hepatologist (Liver Medicine & Gastroenterology)',
   qualifications: 'MBBS, FCPS (Medicine), MD (Internal Medicine), FACP (USA), FRCP (UK)',
   experience:
-    '25 years of experience, Former Professor & Head, Department of Hepatology, Rangpur Medical College Hospital',
+    'Founder & former Head of the Department of Rangpur Medical College Hospital. Proud M.B.B.S. student of IPGMR (P.G. Hospital) of second batch. Joined government service from 10th BCS. Achieved M.D. (Hepatology) Degree from B.S.M.M.U. (P.G. hospital) & completed FCPS part to training from Sir Salimullah Medical College & Mitford Hospital, Dhaka.',
 }
 
 export const qualifications = [
@@ -70,25 +70,32 @@ export const qualifications = [
   { title: 'MD (Internal Medicine)', description: 'Doctor of Medicine in Internal Medicine' },
   { title: 'FACP (USA)', description: 'Fellow of the American College of Physicians' },
   { title: 'FRCP (UK)', description: 'Fellow of the Royal College of Physicians' },
+  { title: 'MD (Hepatology)', description: 'Doctor of Medicine in Hepatology from B.S.M.M.U. (P.G. hospital)' },
 ]
 
 export const achievements = [
   {
-    title: 'Best Hepatologist Award 2022',
-    year: '2022',
-    description: 'Awarded for outstanding service in liver disease treatment.',
-    image: '/static/images/achievements/1.jpg',
-  },
-  {
-    title: 'Former Professor & Head, Hepatology Dept.',
-    year: '2010-2020',
-    description: 'Led the Hepatology department with excellence in education and research.',
-    image: '/static/images/achievements/1.jpg',
-  },
-  {
-    title: 'Published 20+ Research Papers',
+    title: 'Founder & former Head of the Department of Rangpur Medical College Hospital',
     year: '',
-    description: 'Contributed significant research in hepatology and gastroenterology.',
+    description: '',
+    image: '/static/images/achievements/1.jpg',
+  },
+  {
+    title: 'M.B.B.S. student of IPGMR (P.G. Hospital) of second batch',
+    year: '',
+    description: '',
+    image: '/static/images/achievements/1.jpg',
+  },
+  {
+    title: 'Joined government service from 10th BCS',
+    year: '',
+    description: '',
+    image: '/static/images/achievements/1.jpg',
+  },
+  {
+    title: 'Completed FCPS part to training from Sir Salimullah Medical College & Mitford Hospital, Dhaka',
+    year: '',
+    description: '',
     image: '/static/images/achievements/1.jpg',
   },
 ]

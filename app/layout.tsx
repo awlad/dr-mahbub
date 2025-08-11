@@ -80,6 +80,47 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
+        <script type="application/ld+json">
+          {`
+            "@context": "https://schema.org",
+            "@type": "Physician",
+            "name": "${siteMetadata.author}",
+            "url": "${siteMetadata.siteUrl}",
+            "image": "${siteMetadata.siteUrl}${siteMetadata.siteLogo}",
+            "sameAs": [
+              ${siteMetadata.facebook ? `"${siteMetadata.facebook}"` : ''}
+              ${siteMetadata.twitter ? `"${siteMetadata.twitter}"` : ''}
+              ${siteMetadata.linkedin ? `"${siteMetadata.linkedin}"` : ''}
+              ${siteMetadata.youtube ? `"${siteMetadata.youtube}"` : ''}
+              ${siteMetadata.github ? `"${siteMetadata.github}"` : ''}
+            ].filter(Boolean),
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "House # 67, Avenue # 5, Block # C, Section-6 Mirpur, (Original-10),Pallabi",
+              "addressLocality": "Dhaka",
+              "addressRegion": "Dhaka",
+              "postalCode": "1216",
+              "addressCountry": "BD"
+            },
+            "telephone": "${siteMetadata.phone}",
+            "alumniOf": [
+              {
+                "@type": "EducationalOrganization",
+                "name": "IPGMR (P.G. Hospital)"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "B.S.M.M.U. (P.G. hospital)"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "Sir Salimullah Medical College & Mitford Hospital, Dhaka"
+              }
+            ],
+            "medicalSpecialty": "Hepatology",
+            "description": "${siteMetadata.description}"
+          }`}
+        </script>
       </head>
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ClientLayoutWrapper>{children}</ClientLayoutWrapper>

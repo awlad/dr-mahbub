@@ -352,33 +352,10 @@ function Version5() {
 }
 
 export default function HomePageClient() {
-  const [version, setVersion] = useState(1)
-
   return (
     <div className="relative min-h-screen bg-gray-50 py-6">
-      <div className="absolute top-4 left-4 z-10 flex space-x-2">
-        {[1, 2, 3, 4, 5].map((v) => (
-          <button
-            key={v}
-            onClick={() => setVersion(v)}
-            aria-label={`Switch to version ${v}`}
-            className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all duration-200 ${
-              version === v
-                ? 'scale-110 bg-cyan-500 text-white shadow-lg'
-                : 'bg-white/50 text-gray-600 hover:bg-white'
-            } `}
-          >
-            {v}
-          </button>
-        ))}
-      </div>
-
       <div className="mx-auto max-w-5xl sm:px-4 md:px-6">
-        {version === 1 && <Version1 />}
-        {version === 2 && <Version2 />}
-        {version === 3 && <Version3 />}
-        {version === 4 && <Version4 />}
-        {version === 5 && <Version5 />}
+        <Version1 />
       </div>
     </div>
   )
