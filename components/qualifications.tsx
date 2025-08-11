@@ -3,8 +3,11 @@ type QualificationsProps = {
   qualifications?: { title: string; description: string }[]
 }
 
-export default function Qualifications({ qualificationsString, qualifications }: QualificationsProps) {
-  let qualificationsArray = []
+export default function Qualifications({
+  qualificationsString,
+  qualifications,
+}: QualificationsProps) {
+  let qualificationsArray: string[] = []
 
   if (typeof qualificationsString === 'string') {
     qualificationsArray = qualificationsString.split(',').map((q) => q.trim())
@@ -19,7 +22,7 @@ export default function Qualifications({ qualificationsString, qualifications }:
   return (
     <div className="my-4">
       <h2 className="mb-2 text-xl font-semibold">Qualifications</h2>
-      <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+      <ul className="list-inside list-disc text-gray-700 dark:text-gray-300">
         {qualificationsArray.map((qualification, index) => (
           <li key={index}>{qualification}</li>
         ))}

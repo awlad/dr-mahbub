@@ -106,8 +106,8 @@ function Version1() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-20 px-2 py-12 sm:px-4 md:px-6">
-      <section className="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
-        <div className="md:col-span-2 flex justify-center">
+      <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-5">
+        <div className="flex justify-center md:col-span-2">
           <Image
             src={siteMetadata.siteLogo}
             alt={siteMetadata.author}
@@ -116,9 +116,13 @@ function Version1() {
             className="rounded-xl object-cover shadow-lg"
           />
         </div>
-        <div className="md:col-span-3 space-y-4">
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white">{siteMetadata.author}</h1>
-          <p className="text-xl lg:text-2xl font-semibold text-cyan-500">{siteMetadata.specialization}</p>
+        <div className="space-y-4 md:col-span-3">
+          <h1 className="text-4xl font-extrabold text-gray-900 lg:text-5xl dark:text-white">
+            {siteMetadata.author}
+          </h1>
+          <p className="text-xl font-semibold text-cyan-500 lg:text-2xl">
+            {siteMetadata.specialization}
+          </p>
           <p className="text-md text-gray-600 dark:text-gray-400">{siteMetadata.qualifications}</p>
           <p className="text-lg text-gray-700 dark:text-gray-300">{siteMetadata.experience}</p>
           <CallForSerial />
@@ -126,10 +130,15 @@ function Version1() {
       </section>
       <Chamber />
       <section>
-        <h2 className="mb-8 text-3xl font-bold text-center text-gray-900 dark:text-white">My Services</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+          My Services
+        </h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <div key={service} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300">
+            <div
+              key={service}
+              className="rounded-lg bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-xl dark:bg-gray-800"
+            >
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{service}</h3>
             </div>
           ))}
@@ -176,7 +185,11 @@ function Version3() {
     <div>
       <section
         className="relative flex h-[400px] items-center"
-        style={{backgroundImage: `url('/static/images/ocean.jpeg')`, backgroundSize: 'cover', backgroundPosition: 'center'}}
+        style={{
+          backgroundImage: `url('/static/images/ocean.jpeg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       >
         <div className="bg-opacity-50 absolute inset-0 bg-black"></div>
         <div className="relative mx-auto w-full max-w-5xl px-6">
