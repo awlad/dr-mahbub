@@ -1,5 +1,15 @@
-export default function Qualifications({ qualificationsString }) {
-  const qualificationsArray = qualificationsString.split(',').map(q => q.trim());
+export default function Qualifications({ qualificationsString, qualifications }) {
+  let qualificationsArray = []
+
+  if (typeof qualificationsString === 'string') {
+    qualificationsArray = qualificationsString.split(',').map((q) => q.trim())
+  } else if (Array.isArray(qualifications)) {
+    qualificationsArray = qualifications.map((q) => q.title)
+  }
+
+  if (qualificationsArray.length === 0) {
+    return null
+  }
 
   return (
     <div className="my-4">

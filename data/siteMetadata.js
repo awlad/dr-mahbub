@@ -100,6 +100,22 @@ export const achievements = [
   },
 ]
 
+export const services = [
+  'Field of Concentration',
+  'Abnormal liver biochemical and function tests',
+  'Acute Liver Failure',
+  'Alcoholic Fatty Liver Disease',
+  'Alcoholic Liver Diseases',
+  'Cancer - Liver',
+  'Chronic Liver Disease',
+  'Colorectal & Hepatobiliary Surgery',
+  'Hepatitis A Treatment',
+  'Hepatitis B Treatment',
+  'Hepato-Biliary-Pancreatic',
+  'Interventional Hepatology',
+  'Hepatitis C Treatment',
+]
+
 export const headerNavLinks = [
   { title: 'Appointment', path: '#book-appointment', isModalTrigger: true },
   { title: 'Chamber', path: '/#chamber' },
