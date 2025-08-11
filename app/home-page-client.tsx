@@ -106,23 +106,22 @@ function Version1() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-20 px-2 py-12 sm:px-4 md:px-6">
-      <section className="flex flex-col items-center gap-12 md:flex-row">
-        <div className="flex-shrink-0">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col items-center text-center md:text-left">
           <Image
             src={siteMetadata.siteLogo}
             alt={siteMetadata.author}
             width={300}
             height={400}
-            className="rounded-xl object-cover shadow-lg"
+            className="rounded-xl object-cover shadow-lg mb-6"
           />
-        </div>
-        <div>
           <h1 className="text-4xl font-extrabold">{siteMetadata.author}</h1>
           <p className="mt-2 text-xl font-semibold text-cyan-500">{siteMetadata.specialization}</p>
-
-          <p className="mt-4 text-gray-700">{siteMetadata.experience}</p>
-
-          <div className="mt-2">
+          <Qualifications qualifications={qualifications} />
+        </div>
+        <div>
+          <p className="mt-4 text-lg text-gray-700">{siteMetadata.experience}</p>
+          <div className="mt-8">
             <CallForSerial />
           </div>
         </div>
