@@ -117,11 +117,11 @@ function Version1() {
           />
           <h1 className="text-4xl font-extrabold">{siteMetadata.author}</h1>
           <p className="mt-2 text-xl font-semibold text-cyan-500">{siteMetadata.specialization}</p>
-          <Qualifications qualifications={qualifications} />
+          <Qualifications qualificationsString={siteMetadata.qualifications} />
         </div>
         <div>
-          <p className="mt-4 text-lg text-gray-700">{siteMetadata.experience}</p>
-          <div className="mt-8">
+          <p className="text-lg text-gray-700">{siteMetadata.experience}</p>
+          <div className="mt-2">
             <CallForSerial />
           </div>
         </div>
