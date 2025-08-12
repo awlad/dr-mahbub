@@ -105,7 +105,7 @@ function Version1() {
   const posts = allBlogs.slice(0, 3)
 
   return (
-    <div className="mx-auto max-w-6xl space-y-20 px-2 py-12 sm:px-4 md:px-6">
+    <div className="mx-auto max-w-6xl space-y-20 px-2 sm:px-4 sm:py-8 md:px-6 md:py-12">
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-5">
         <div className="flex justify-center md:col-span-2">
           <Image

@@ -32,8 +32,13 @@ const Header = () => {
           )}
         </div>
       </Link>
-
-      <div className="flex items-center space-x-4 leading-5">
+      <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
+        <button
+          onClick={openModal}
+          className="rounded-md bg-cyan-500 px-3 py-2 font-semibold text-white transition-colors hover:bg-cyan-600 sm:hidden"
+        >
+          Appointment
+        </button>
         <div className="hidden items-center space-x-6 sm:flex">
           {headerNavLinks
             .filter((link) => link.path !== '/')
