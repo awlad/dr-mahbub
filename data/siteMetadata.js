@@ -62,7 +62,7 @@ const siteMetadata = {
   specialization: 'Hepatologist (Liver Medicine & Gastroenterology)',
   qualifications: 'MBBS, FCPS (Medicine), MD (Internal Medicine), FACP (USA), FRCP (UK)',
   experience:
-    'Founder & former Head of the Department of Rangpur Medical College Hospital. Proud M.B.B.S. student of IPGMR (P.G. Hospital) of second batch. Joined government service from 10th BCS. Achieved M.D. (Hepatology) Degree from B.S.M.M.U. (P.G. hospital) & completed FCPS part to training from Sir Salimullah Medical College & Mitford Hospital, Dhaka.',
+    'Founder & former Head of the Department of Rangpur Medical College Hospital. Proud M.B.B.S. student of IPGMR (P.G. Hospital) of second batch. Joined government service from 10th BCS. Achieved M.D. (Hepatology) Degree from B.S.M.M.U. (P.G. hospital) & completed FCPS part one to training from Sir Salimullah Medical College & Mitford Hospital, Dhaka.',
   keywords: [
     'Hepatologist in Dhaka',
     'Gastroenterologist in Dhaka',
@@ -161,8 +161,8 @@ export const services = {
 }
 
 export const headerNavLinks = [
-  { title: 'Appointment', path: '#book-appointment', isModalTrigger: true },
-  { title: 'Chamber', path: '/#chamber' },
+  { title: 'সিরিয়াল', path: '#book-appointment', isModalTrigger: true },
+  { title: 'চেম্বার', path: '/#chamber' },
   { title: 'About Me', path: '/#about-me' },
   { title: 'Blogs', path: '/blog' },
 ]

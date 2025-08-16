@@ -6,7 +6,7 @@ const Chamber = () => {
 
   return (
     <section id="chamber" className="bg-gray-100 py-12 dark:bg-gray-800">
-      <div className="mx-auto px-6">
+      <div className="mx-auto">
         <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
           চেম্বার ইনফরমেশন
         </h2>

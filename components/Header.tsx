@@ -37,7 +37,7 @@ const Header = () => {
           onClick={openModal}
           className="rounded-md bg-cyan-500 px-3 py-2 font-semibold text-white transition-colors hover:bg-cyan-600 sm:hidden"
         >
-          Appointment
+          সিরিয়াল
         </button>
         <div className="hidden items-center space-x-6 sm:flex">
           {headerNavLinks

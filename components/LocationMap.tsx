@@ -9,7 +9,7 @@ const LocationMap = () => {
   return (
     <section className="mx-auto max-w-6xl px-2 sm:px-4 sm:py-8 md:px-6 md:py-12">
       <h3 className="mb-4 text-center text-2xl font-bold text-gray-900 dark:text-gray-100">
-        Find Location on Map
+        লোকেশন ম্যাপ
       </h3>
       <div className="relative h-0 overflow-hidden rounded-lg" style={{ paddingBottom: '56.25%' }}>
         <iframe
