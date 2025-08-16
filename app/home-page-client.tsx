@@ -11,17 +11,23 @@ import LocationMap from '@/components/LocationMap'
 
 const CallForSerial = () => {
   return (
-    <div className="mb-6 rounded-lg bg-gray-100 p-6 text-center dark:bg-gray-800">
-      <p className="mb-2 text-lg text-gray-600 dark:text-gray-400">সিরিয়াল দিন:</p>
-      <a
-        href={`tel:${siteMetadata.phone.replace(/\s+/g, '')}`}
-        className="text-4xl font-bold text-cyan-500 transition-colors hover:text-cyan-600"
-      >
-        {siteMetadata.phone}
-      </a>
-      <div className="mt-4">
-        <CopyButton textToCopy={siteMetadata.phone} />
-      </div>
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      {siteMetadata.chambers.map((chamber, index) => (
+        <div key={index} className="rounded-lg bg-gray-100 p-6 text-center dark:bg-gray-800">
+          <p className="mb-2 text-xl font-semibold text-gray-700 dark:text-gray-200">
+            {chamber.name}:
+          </p>
+          <div className="flex items-center justify-center gap-2">
+            <a
+              href={`tel:${chamber.phone.replace(/\s+/g, '')}`}
+              className="text-3xl font-bold text-cyan-500 transition-colors hover:text-cyan-600"
+            >
+              {chamber.phone}
+            </a>
+            <CopyButton textToCopy={chamber.phone} />
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
@@ -48,14 +54,19 @@ function Version1() {
           </p>
           <p className="text-md text-gray-600 dark:text-gray-400">{siteMetadata.qualifications}</p>
           <p className="text-lg text-gray-700 dark:text-gray-300">{siteMetadata.experience}</p>
-          <CallForSerial />
         </div>
       </section>
-      <Chamber />
+
+      <section className="!mt-10">
+        <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+          সিরিয়ালের জন্য যোগাযোগ করুন
+        </h2>
+        <CallForSerial />
+      </section>
       <Services />
+      <Chamber />
       <AboutMe />
       <Achievements achievements={achievements} />
-      <LocationMap></LocationMap>
     </div>
   )
 }

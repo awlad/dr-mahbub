@@ -55,14 +55,35 @@ const siteMetadata = {
     },
   },
   phone: '09611530530',
+  chambers: [
+    {
+      location: 'Dhaka Chamber (Mirpur)',
+      name: 'ঢাকা মিরপুর চেম্বার',
+      phone: '09611530530',
+      address:
+        'Popular Diagnostic Centre Ltd. | Mirpur (Unit 1), House # 67, Avenue # 5, Block # C, Section-6 Mirpur, (Original-10),Pallabi, Dhaka, Dhaka-1216, Bangladesh',
+      schedule: 'রবিবার - বৃহস্পতিবার: বিকাল ৫টা - রাত ৯টা',
+      googleMapsEmbedUrl:
+        'https://maps.google.com/maps?q=Popular%20Diagnostic%20Centre%20Ltd.%2C%20Mirpur&t=&z=15&ie=UTF8&iwloc=&output=embed',
+    },
+    {
+      location: 'Rangpur Chamber',
+      name: 'রংপুর চেম্বার',
+      phone: '09611530531',
+      address: 'Popular Diagnostic Center, Rangpur',
+      schedule: 'শুক্রবার ও শনিবার (সকাল ১১টা - রাত ১০টা)',
+      googleMapsEmbedUrl:
+        'https://maps.google.com/maps?q=Popular%20Diagnostic%20Center%2C%20Rangpur&t=&z=15&ie=UTF8&iwloc=&output=embed',
+    },
+  ],
   address:
     'Popular Diagnostic Centre Ltd. | Mirpur (Unit 1), House # 67, Avenue # 5, Block # C, Section-6 Mirpur, (Original-10),Pallabi, Dhaka, Dhaka-1216, Bangladesh',
   googleMapsEmbedUrl:
     'https://maps.google.com/maps?q=Popular%20Diagnostic%20Centre%20Ltd.%2C%20Mirpur&t=&z=15&ie=UTF8&iwloc=&output=embed',
   specialization: 'Hepatologist (Liver Medicine & Gastroenterology)',
-  qualifications: 'MBBS, FCPS (Medicine), MD (Internal Medicine), FACP (USA), FRCP (UK)',
+  qualifications: 'MBBS, MD (Hepatology),MAGA (Member of American Gastroenterological Association)',
   experience:
-    'Founder & former Head of the Department of Rangpur Medical College Hospital. Proud M.B.B.S. student of IPGMR (P.G. Hospital) of second batch. Joined government service from 10th BCS. Achieved M.D. (Hepatology) Degree from B.S.M.M.U. (P.G. hospital) & completed FCPS part one to training from Sir Salimullah Medical College & Mitford Hospital, Dhaka.',
+    'Founder & former Head of the Department of Rangpur Medical College Hospital. Proud M.B.B.S. student of IPGMR (P.G. Hospital) of second batch. Joined government service from 10th BCS. Achieved M.D. (Hepatology) Degree from B.S.M.M.U. (P.G. hospital) & completed FCPS second part training from Sir Salimullah Medical College & Hospital (MITFORD).',
   keywords: [
     'Hepatologist in Dhaka',
     'Gastroenterologist in Dhaka',
@@ -103,7 +124,8 @@ export const qualifications = [
 
 export const achievements = [
   {
-    title: 'Founder & former Head of the Department of Rangpur Medical College Hospital',
+    title:
+      'Founder & former head of the Department of Hepatology of Rangpur Medical College & Hospital',
     year: '',
     description: '',
     image: '/static/images/achievements/1.jpg',
@@ -112,19 +134,14 @@ export const achievements = [
     title: 'M.B.B.S. student of IPGMR (P.G. Hospital) of second batch',
     year: '',
     description: '',
-    image: '/static/images/achievements/1.jpg',
+    image: '/static/images/achievements/2.jpeg',
   },
   {
-    title: 'Joined government service from 10th BCS',
+    title:
+      'Completed MD (Doctor of Medicine), Hepatology from Bangladesh Medical University (former P.G. Hospital).',
     year: '',
     description: '',
-    image: '/static/images/achievements/1.jpg',
-  },
-  {
-    title: 'Completed FCPS part to training from Sir Salimullah Medical College & Mitford Hospital, Dhaka',
-    year: '',
-    description: '',
-    image: '/static/images/achievements/1.jpg',
+    image: '/static/images/achievements/3.jpeg',
   },
 ]
 
@@ -132,7 +149,7 @@ export const services = {
   header: 'যে সমস্ত রোগের জন্য পরামর্শ দেয়া হয়',
   items: [
     'জন্ডিস (Jaundice)',
-    'হেপাটাইটিস এ বি সি এবং ই',
+    'এ, বি, সি, ডি এবং ই',
     'HBsAg পরীক্ষা এবং টিকা',
     'ক্রনিক লিভার ডিজিজ (CLD)',
     'লিভার সিরোসিস',

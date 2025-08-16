@@ -33,29 +33,30 @@ const AppointmentModal = () => {
             সিরিয়াল দিন
           </h2>
           <p className="mb-6 text-gray-600 dark:text-gray-400">
-            সিরিয়াল এর জন্য নিচের নাম্বারে ক্লিক করুন.
+            সিরিয়াল এর জন্য নিচের নাম্বারে কল করুন
           </p>
         </div>
 
-        <div className="mb-6 rounded-lg bg-gray-100 p-6 text-center dark:bg-gray-800">
-          <a
-            href={`tel:${siteMetadata.phone.replace(/\s+/g, '')}`}
-            className="text-4xl font-bold text-cyan-500 transition-colors hover:text-cyan-600"
-          >
-            {siteMetadata.phone}
-          </a>
-          <div className="mt-4">
-            <CopyButton textToCopy={siteMetadata.phone} />
-          </div>
-        </div>
-
-        <div className="border-t border-gray-200 pt-6 dark:border-gray-700">
-          <h3 className="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-            চেম্বার ইনফরমেশন
-          </h3>
-          <address className="whitespace-pre-line text-gray-600 not-italic dark:text-gray-400">
-            {siteMetadata.address}
-          </address>
+        <div className="space-y-6">
+          {siteMetadata.chambers.map((chamber, index) => (
+            <div key={index} className="rounded-lg bg-gray-100 p-6 text-center dark:bg-gray-800">
+              <h3 className="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                {chamber.name}
+              </h3>
+              <div className="flex items-center justify-center gap-2">
+                <a
+                  href={`tel:${chamber.phone.replace(/\s+/g, '')}`}
+                  className="text-3xl font-bold text-cyan-500 transition-colors hover:text-cyan-600"
+                >
+                  {chamber.phone}
+                </a>
+                <CopyButton textToCopy={chamber.phone} />
+              </div>
+              <address className="mt-4 text-sm whitespace-pre-line text-gray-600 not-italic dark:text-gray-400">
+                {chamber.address}
+              </address>
+            </div>
+          ))}
         </div>
 
         <button

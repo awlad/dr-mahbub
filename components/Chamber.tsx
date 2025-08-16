@@ -1,34 +1,42 @@
+// components/Chamber.tsx
+import React from 'react'
 import siteMetadata from '@/data/siteMetadata'
-import { useAppointmentModal } from '../contexts/AppointmentModalContext'
 
 const Chamber = () => {
-  const { openModal } = useAppointmentModal()
-
   return (
-    <section id="chamber" className="bg-gray-100 sm:py-8 md:px-6 md:py-12 dark:bg-gray-800">
-      <div className="mx-auto">
-        <h2 className="mb-8 pt-8 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
-          চেম্বার ইনফরমেশন
+    <section id="chamber" className="bg-gray-100 py-12 dark:bg-gray-800">
+      <div className="container mx-auto px-6">
+        <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+          চেম্বার
         </h2>
-        <div className="flex flex-col items-center justify-between gap-8 rounded-lg bg-white p-8 shadow-md md:flex-row dark:bg-gray-900">
-          <div>
-            <h3 className="mt-4 mb-2 text-xl font-semibold">সময়</h3>
-            <p className="text-gray-700 dark:text-gray-100">
-              শনিবার - বৃহস্পতিবার: বিকাল ৫ - ৯
-              <br />
-              শুক্রবার বন্ধ
-            </p>
-            <h3 className="mt-4 mb-2 text-xl font-semibold">Location</h3>
-            <p className="text-gray-700 dark:text-gray-100">{siteMetadata.address}</p>
-          </div>
-          <div className="text-center">
-            <button
-              onClick={openModal}
-              className="rounded-md bg-cyan-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-cyan-600"
+        <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-2">
+          {siteMetadata.chambers.map((chamber, index) => (
+            <div
+              key={index}
+              className="overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-900"
             >
-              সিরিয়াল দিন
-            </button>
-          </div>
+              <div className="p-6">
+                <h3 className="mb-2 text-2xl font-bold text-cyan-600">{chamber.location}</h3>
+                <p className="mb-4 text-gray-700 dark:text-gray-300">{chamber.address}</p>
+                <div className="mb-4">
+                  <span className="font-semibold text-gray-900 dark:text-white">সময়সূচী: </span>
+                  <span className="text-gray-700 dark:text-gray-300">{chamber.schedule}</span>
+                </div>
+              </div>
+              <div className="h-80 w-full">
+                {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
+                <iframe
+                  src={chamber.googleMapsEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
