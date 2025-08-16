@@ -38,7 +38,6 @@ const AppointmentModal = () => {
         </div>
 
         <div className="mb-6 rounded-lg bg-gray-100 p-6 text-center dark:bg-gray-800">
-          <p className="mb-2 text-lg text-gray-600 dark:text-gray-400">Call for serial:</p>
           <a
             href={`tel:${siteMetadata.phone.replace(/\s+/g, '')}`}
             className="text-4xl font-bold text-cyan-500 transition-colors hover:text-cyan-600"
