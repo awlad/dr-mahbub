@@ -57,11 +57,36 @@ const siteMetadata = {
   phone: '09611530530',
   address:
     'Popular Diagnostic Centre Ltd. | Mirpur (Unit 1), House # 67, Avenue # 5, Block # C, Section-6 Mirpur, (Original-10),Pallabi, Dhaka, Dhaka-1216, Bangladesh',
-  googleMapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0000000000005!2d90.36000000000001!3d23.800000000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQ4JzAwLjAiTiA5MMKwMjEnMzYuMCJF!5e0!3m2!1sen!2sbd!4v1678888888888!5m2!1sen!2sbd',
+  googleMapsEmbedUrl:
+    'https://maps.google.com/maps?q=Popular%20Diagnostic%20Centre%20Ltd.%2C%20Mirpur&t=&z=15&ie=UTF8&iwloc=&output=embed',
   specialization: 'Hepatologist (Liver Medicine & Gastroenterology)',
   qualifications: 'MBBS, FCPS (Medicine), MD (Internal Medicine), FACP (USA), FRCP (UK)',
   experience:
     'Founder & former Head of the Department of Rangpur Medical College Hospital. Proud M.B.B.S. student of IPGMR (P.G. Hospital) of second batch. Joined government service from 10th BCS. Achieved M.D. (Hepatology) Degree from B.S.M.M.U. (P.G. hospital) & completed FCPS part to training from Sir Salimullah Medical College & Mitford Hospital, Dhaka.',
+  keywords: [
+    'Hepatologist in Dhaka',
+    'Gastroenterologist in Dhaka',
+    'Liver Specialist in Dhaka',
+    'Jaundice',
+    'Hepatitis A, B, C, E',
+    'HBsAg',
+    'Chronic Liver Disease (CLD)',
+    'Liver Cirrhosis',
+    'Liver Abscess',
+    'Fatty Liver',
+    "Gilbert's Syndrome",
+    "Wilson's Disease",
+    'Liver Tumor',
+    'Liver Cancer',
+    'Hematemesis and Melaena',
+    'Irritable Bowel Syndrome (IBS)',
+    'Piles',
+    'Pancreatitis',
+    'Gallstone Disease',
+    'Endoscopy',
+    'Colonoscopy',
+    'Endoscopic Band Ligation (EBL)',
+  ],
 }
 
 export const qualifications = [
@@ -70,7 +95,10 @@ export const qualifications = [
   { title: 'MD (Internal Medicine)', description: 'Doctor of Medicine in Internal Medicine' },
   { title: 'FACP (USA)', description: 'Fellow of the American College of Physicians' },
   { title: 'FRCP (UK)', description: 'Fellow of the Royal College of Physicians' },
-  { title: 'MD (Hepatology)', description: 'Doctor of Medicine in Hepatology from B.S.M.M.U. (P.G. hospital)' },
+  {
+    title: 'MD (Hepatology)',
+    description: 'Doctor of Medicine in Hepatology from B.S.M.M.U. (P.G. hospital)',
+  },
 ]
 
 export const achievements = [
@@ -100,25 +128,42 @@ export const achievements = [
   },
 ]
 
-export const services = [
-  'Field of Concentration',
-  'Abnormal liver biochemical and function tests',
-  'Acute Liver Failure',
-  'Alcoholic Fatty Liver Disease',
-  'Alcoholic Liver Diseases',
-  'Cancer - Liver',
-  'Chronic Liver Disease',
-  'Colorectal & Hepatobiliary Surgery',
-  'Hepatitis A Treatment',
-  'Hepatitis B Treatment',
-  'Hepato-Biliary-Pancreatic',
-  'Interventional Hepatology',
-  'Hepatitis C Treatment',
-]
+export const services = {
+  header: 'যে সমস্ত রোগের জন্য পরামর্শ দেয়া হয়',
+  items: [
+    'জন্ডিস (Jaundice)',
+    'হেপাটাইটিস এ বি সি এবং ই',
+    'HBsAg পরীক্ষা এবং টিকা',
+    'ক্রনিক লিভার ডিজিজ (CLD)',
+    'লিভার সিরোসিস',
+    'লিভার অ্যাবসেস',
+    'ফ্যাটি লিভার (Fatty Liver)',
+    'শিশুদের নানা ধরনের লিভারের রোগ',
+    'গিলবার্ট  সিনড্রোম',
+    'উইলসনস  ডিজিজ',
+    'লিভার টিউমার',
+    'সিস্ট ও হেমাঞ্জিওমা',
+    'লিভার ক্যান্সার',
+    'রক্ত বমি ও কালো পায়খানা (Hematemesis and Melaena)',
+    'দীর্ঘ মেয়াদী আমাশা ও ডায়রিয়া',
+    'ইরিটেবল বাওল সিনড্রোম (Irritable Bowel Syndrome- IBS)',
+    'পায়খানার দ্বার দিয়ে রক্ত পড়া ও পাইলস',
+    'পেট ব্যথা ও পেটের পীড়া',
+    'প্যানক্রিয়েটাইটিস',
+    'পিত্তথলি পাথর (গলস্টোন ডিজিজ)',
+    'পিত্তনালীতে পাথর',
+    'ইন্টারভেনশনাল  প্রসিডিউর সমূহ',
+    'এনডোস্কোপি (Endoscopy)',
+    'কোলোনোস্কপি (Colonoscopy)',
+    'এন্ডোস্কপিক ব্যান্ড লিগেশন (EBL)',
+    'বিনা অপারেশনে পেটের পানি অপসারণ (Ascitic Fluid Study)',
+  ],
+}
 
 export const headerNavLinks = [
   { title: 'Appointment', path: '#book-appointment', isModalTrigger: true },
   { title: 'Chamber', path: '/#chamber' },
+  { title: 'About Me', path: '/#about-me' },
   { title: 'Blogs', path: '/blog' },
 ]
 

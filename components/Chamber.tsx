@@ -30,26 +30,6 @@ const Chamber = () => {
             </button>
           </div>
         </div>
-        <div className="mt-8">
-          <h3 className="mb-4 text-center text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Find Us on Map
-          </h3>
-          <div
-            className="relative h-0 overflow-hidden rounded-lg"
-            style={{ paddingBottom: '56.25%' }}
-          >
-            <iframe
-              src={siteMetadata.googleMapsEmbedUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0, position: 'absolute', left: 0, top: 0 }}
-              allowFullScreen={true}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Google Map of Chamber Location"
-            ></iframe>
-          </div>
-        </div>
       </div>
     </section>
   )
