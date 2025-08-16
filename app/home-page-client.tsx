@@ -65,8 +65,8 @@ function Version1() {
       </section>
       <Services />
       <Chamber />
-      <AboutMe />
       <Achievements achievements={achievements} />
+      <AboutMe />
     </div>
   )
 }
