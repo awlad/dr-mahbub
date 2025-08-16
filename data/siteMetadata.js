@@ -181,7 +181,7 @@ export const headerNavLinks = [
   { title: 'সিরিয়াল', path: '#book-appointment', isModalTrigger: true },
   { title: 'চেম্বার', path: '/#chamber' },
   { title: 'About Me', path: '/#about-me' },
-  { title: 'Blogs', path: '/blog' },
+  // { title: 'Blogs', path: '/blog' },
 ]
 
 export default siteMetadata
