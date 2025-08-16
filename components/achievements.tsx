@@ -3,7 +3,9 @@ import Image from 'next/image'
 export default function Achievements({ achievements }) {
   return (
     <section className="my-8">
-      <h2 className="mb-6 text-2xl font-semibold">এচিভমেন্টস</h2>
+      <h3 className="mb-4 text-center text-2xl font-bold text-gray-900 dark:text-gray-100">
+        এচিভমেন্টস
+      </h3>
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
         {achievements.map(({ title, year, description, image }, i) => (
           <div

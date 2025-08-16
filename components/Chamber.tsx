@@ -5,9 +5,9 @@ const Chamber = () => {
   const { openModal } = useAppointmentModal()
 
   return (
-    <section id="chamber" className="bg-gray-100 py-12 dark:bg-gray-800">
+    <section id="chamber" className="bg-gray-100 sm:py-8 md:px-6 md:py-12 dark:bg-gray-800">
       <div className="mx-auto">
-        <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <h2 className="mb-8 pt-8 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
           চেম্বার ইনফরমেশন
         </h2>
         <div className="flex flex-col items-center justify-between gap-8 rounded-lg bg-white p-8 shadow-md md:flex-row dark:bg-gray-900">
