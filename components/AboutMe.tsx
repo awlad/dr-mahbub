@@ -3,11 +3,11 @@ import React from 'react'
 const AboutMe = () => {
   return (
     <section id="about-me" className="bg-gray-100 py-12 dark:bg-gray-800">
-      <div className="mx-auto px-6">
+      <div className="mx-auto">
         <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
           About Me
         </h2>
-        <div className="rounded-lg bg-white p-8 shadow-md dark:bg-gray-900">
+        <div className="rounded-lg bg-white p-5 shadow-md dark:bg-gray-900">
           <div className="prose dark:prose-dark max-w-full text-justify">
             <p className="mb-4 text-gray-700 dark:text-gray-100">
               অধ্যাপক ডাক্তার মুহম্মদ মাহবুব হোসেন ১৯৬৩ সালের পহেলা মে কুষ্টিয়া জেলার খোকসা থানার

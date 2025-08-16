@@ -30,10 +30,10 @@ const AppointmentModal = () => {
       <div className="relative w-full max-w-lg scale-95 transform rounded-2xl bg-white p-8 shadow-2xl transition-all duration-300 ease-in-out hover:scale-100 dark:bg-gray-900">
         <div className="text-center">
           <h2 id="modal-title" className="mb-2 text-3xl font-bold text-cyan-500">
-            Book an Appointment
+            সিরিয়াল দিন
           </h2>
           <p className="mb-6 text-gray-600 dark:text-gray-400">
-            To schedule your appointment, please call the number below.
+            সিরিয়াল এর জন্য নিচের নাম্বারে ক্লিক করুন.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ const AppointmentModal = () => {
 
         <div className="border-t border-gray-200 pt-6 dark:border-gray-700">
           <h3 className="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-            Chamber Information
+            চেম্বার ইনফরমেশন
           </h3>
           <address className="whitespace-pre-line text-gray-600 not-italic dark:text-gray-400">
             {siteMetadata.address}
