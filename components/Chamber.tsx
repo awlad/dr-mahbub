@@ -42,6 +42,7 @@ const Chamber = () => {
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  title={`Google Map for ${chamber.name} - ${chamber.location}`}
                 ></iframe>
               </div>
             </div>

@@ -16,7 +16,7 @@ export default function Achievements({ achievements }) {
               <div className="relative mb-3 h-40 w-full">
                 <Image
                   src={image}
-                  alt="Award"
+                  alt={`Achievement: ${title}`}
                   className="rounded-md object-cover"
                   fill
                   sizes="100vw"

@@ -4,7 +4,7 @@ import 'remark-github-blockquote-alert/alert.css'
 
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper'
 
-import siteMetadata from '@/data/siteMetadata'
+import siteMetadata, { services } from '@/data/siteMetadata'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -81,45 +81,68 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
         <script type="application/ld+json">
-          {`
-            "@context": "https://schema.org",
-            "@type": "Physician",
-            "name": "${siteMetadata.author}",
-            "url": "${siteMetadata.siteUrl}",
-            "image": "${siteMetadata.siteUrl}${siteMetadata.siteLogo}",
-            "sameAs": [
-              ${siteMetadata.facebook ? `"${siteMetadata.facebook}"` : ''}
-              ${siteMetadata.twitter ? `"${siteMetadata.twitter}"` : ''}
-              ${siteMetadata.linkedin ? `"${siteMetadata.linkedin}"` : ''}
-              ${siteMetadata.youtube ? `"${siteMetadata.youtube}"` : ''}
-              ${siteMetadata.github ? `"${siteMetadata.github}"` : ''}
-            ].filter(Boolean),
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "House # 67, Avenue # 5, Block # C, Section-6 Mirpur, (Original-10),Pallabi",
-              "addressLocality": "Dhaka",
-              "addressRegion": "Dhaka",
-              "postalCode": "1216",
-              "addressCountry": "BD"
-            },
-            "telephone": "${siteMetadata.phone}",
-            "alumniOf": [
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Physician',
+            name: siteMetadata.author,
+            url: siteMetadata.siteUrl,
+            image: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+            description: siteMetadata.description,
+            medicalSpecialty: [
               {
-                "@type": "EducationalOrganization",
-                "name": "IPGMR (P.G. Hospital)"
+                '@type': 'MedicalSpecialty',
+                name: 'Hepatology',
               },
               {
-                "@type": "EducationalOrganization",
-                "name": "B.S.M.M.U. (P.G. hospital)"
+                '@type': 'MedicalSpecialty',
+                name: 'Gastroenterology',
               },
-              {
-                "@type": "EducationalOrganization",
-                "name": "Sir Salimullah Medical College & Mitford Hospital, Dhaka"
-              }
             ],
-            "medicalSpecialty": "Hepatology",
-            "description": "${siteMetadata.description}"
-          }`}
+            availableService: services.items.map((service) => ({
+              '@type': 'MedicalProcedure',
+              name: service,
+            })),
+            telephone: siteMetadata.phone,
+            email: siteMetadata.email?.replace('mailto:', ''),
+            sameAs: [
+              siteMetadata.facebook,
+              siteMetadata.twitter,
+              siteMetadata.linkedin,
+              siteMetadata.youtube,
+            ].filter(Boolean),
+            hasCredential: [
+              {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: 'degree',
+                name: 'MBBS',
+              },
+              {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: 'degree',
+                name: 'MD (Hepatology)',
+              },
+              {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: 'professional',
+                name: 'MAGA (Member of American Gastroenterological Association)',
+              },
+            ],
+            workLocation: siteMetadata.chambers.map((chamber) => ({
+              '@type': 'MedicalClinic',
+              name: chamber.name,
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: chamber.address,
+                addressLocality: chamber.location.split(',')[0],
+                addressRegion: 'Bangladesh',
+              },
+              telephone: chamber.phone,
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                description: chamber.schedule,
+              },
+            })),
+          })}
         </script>
       </head>
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
