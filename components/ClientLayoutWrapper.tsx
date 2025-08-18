@@ -1,8 +1,7 @@
-// ClientLayoutWrapper.tsx
+// components/ClientLayoutWrapper.tsx
 
 'use client'
 
-import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionContainer from '@/components/SectionContainer'
@@ -83,6 +82,31 @@ const AppointmentModal = () => {
     </div>
   )
 }
+
+const FloatingAppointmentButton = () => {
+  const { openModal } = useAppointmentModal()
+
+  return (
+    <button
+      onClick={openModal}
+      className="fixed right-4 bottom-6 z-[9999] flex h-16 w-16 items-center justify-center rounded-full bg-cyan-500 text-white shadow-lg transition-transform hover:scale-110 hover:bg-cyan-600 md:hidden"
+      aria-label="Open appointment modal"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="h-8 w-8"
+      >
+        <path
+          fillRule="evenodd"
+          d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.298-.101.434a10.522 10.522 0 005.293 5.293c.136.063.333.034.434-.101l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </button>
+  )
+}
 /* eslint-enable jsx-a11y/click-events-have-key-events */
 /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-enable jsx-a11y/no-static-element-interactions */
@@ -91,12 +115,15 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
   return (
     <AppointmentModalProvider>
       <ThemeProviders>
-        <SectionContainer>
+        <div className="flex min-h-screen flex-col">
           <Header />
-          <main>{children}</main>
+          <main className="mb-auto">
+            <SectionContainer>{children}</SectionContainer>
+          </main>
           <Footer />
-          <AppointmentModal />
-        </SectionContainer>
+        </div>
+        <AppointmentModal />
+        <FloatingAppointmentButton />
       </ThemeProviders>
     </AppointmentModalProvider>
   )

@@ -3,11 +3,20 @@ import React from 'react'
 import siteMetadata from '@/data/siteMetadata'
 
 const Chamber = () => {
+  const chamberNames = siteMetadata.chambers?.map((c) => c.name).join(', ')
+
   return (
-    <section id="chamber" className="bg-gray-100 py-12 dark:bg-gray-800">
+    <section
+      id="chamber"
+      className="bg-gray-100 py-12 dark:bg-gray-800"
+      aria-labelledby="chambers-heading"
+    >
       <div className="container mx-auto px-6">
-        <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
-          চেম্বার
+        <h2
+          id="chambers-heading"
+          className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white"
+        >
+          চেম্বার ও লোকেশন — {chamberNames}
         </h2>
         <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-2">
           {siteMetadata.chambers.map((chamber, index) => (

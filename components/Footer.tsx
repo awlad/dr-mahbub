@@ -7,17 +7,17 @@ export default function Footer() {
   const { openModal } = useAppointmentModal()
 
   return (
-    <footer className="bg-gray-50 py-8 dark:bg-gray-950">
-      <div className="mt-16 flex flex-col items-center space-y-4">
+    <footer className="bg-gray-50 py-6 sm:py-8 dark:bg-gray-950">
+      <div className="flex flex-col items-center space-y-6 px-4">
         <button
           onClick={openModal}
-          className="rounded-md bg-cyan-500 px-4 py-2 font-semibold text-white transition-colors hover:bg-cyan-600"
+          className="rounded-md bg-cyan-500 px-6 py-2.5 font-semibold text-white transition-colors hover:bg-cyan-600"
           aria-label="Appointment"
         >
-          সিরিয়াল
+          সিরিয়াল
         </button>
 
-        <div className="mb-3 flex space-x-4">
+        <div className="flex flex-wrap justify-center gap-4 px-2">
           <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
           <SocialIcon kind="github" href={siteMetadata.github} size={6} />
           <SocialIcon kind="facebook" href={siteMetadata.facebook} size={6} />
@@ -30,12 +30,15 @@ export default function Footer() {
           <SocialIcon kind="threads" href={siteMetadata.threads} size={6} />
           <SocialIcon kind="medium" href={siteMetadata.medium} size={6} />
         </div>
-        <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>{siteMetadata.author}</div>
-          <div>{` • `}</div>
-          <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
+
+        <div className="flex flex-wrap justify-center text-center text-sm text-gray-500 dark:text-gray-400">
+          <div className="px-1">{siteMetadata.author}</div>
+          <div className="hidden sm:block">{` • `}</div>
+          <div className="px-1">{`© ${new Date().getFullYear()}`}</div>
+          <div className="hidden sm:block">{` • `}</div>
+          <div className="px-1">
+            <Link href="/">{siteMetadata.title}</Link>
+          </div>
         </div>
       </div>
     </footer>

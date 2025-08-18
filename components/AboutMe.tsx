@@ -2,10 +2,17 @@ import React from 'react'
 
 const AboutMe = () => {
   return (
-    <section id="about-me" className="bg-gray-100 sm:py-8 md:px-6 md:py-12 dark:bg-gray-800">
-      <div className="mx-auto">
-        <h2 className="mb-8 pt-8 text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
-          About Me
+    <section
+      id="about-me"
+      className="bg-gray-100 py-8 sm:py-10 md:py-12 dark:bg-gray-800"
+      aria-labelledby="about-heading"
+    >
+      <div>
+        <h2
+          id="about-heading"
+          className="mb-6 text-center text-2xl font-bold text-gray-900 sm:mb-8 sm:text-3xl dark:text-gray-100"
+        >
+          About Prof. Dr. Muhammad Mahbub Hussain – Hepatologist in Dhaka
         </h2>
         <div className="rounded-lg bg-white p-5 shadow-md dark:bg-gray-900">
           <div className="prose dark:prose-dark max-w-full text-justify">
