@@ -35,32 +35,33 @@ const CallForSerial = () => {
 function Version1() {
   return (
     <div className="mx-auto max-w-6xl space-y-20 px-2 sm:px-4 sm:py-8 md:px-6 md:py-12">
-      <section
-        className="grid grid-cols-1 items-center gap-12 md:grid-cols-5"
-        aria-labelledby="hero-heading"
-      >
-        <div className="flex justify-center md:col-span-2">
-          <Image
-            src={siteMetadata.siteLogo}
-            alt={`${siteMetadata.author} profile photo`}
-            width={300}
-            height={400}
-            className="rounded-xl object-cover shadow-lg"
-          />
+      <section className="space-y-12" aria-labelledby="hero-heading">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-5">
+          <div className="flex justify-center md:col-span-2">
+            <Image
+              src={siteMetadata.siteLogo}
+              alt={`${siteMetadata.author} profile photo`}
+              width={300}
+              height={400}
+              className="rounded-xl object-cover shadow-lg"
+            />
+          </div>
+          <div className="space-y-4 md:col-span-3">
+            <h1
+              id="hero-heading"
+              className="text-4xl font-extrabold text-gray-900 lg:text-5xl dark:text-white"
+            >
+              {siteMetadata.author}
+            </h1>
+            <h2 className="text-2xl font-semibold text-cyan-500 lg:text-3xl">
+              {siteMetadata.specialization}
+            </h2>
+            <p className="text-md text-gray-600 dark:text-gray-400">
+              {siteMetadata.qualifications}
+            </p>
+          </div>
         </div>
-        <div className="space-y-4 md:col-span-3">
-          <h1
-            id="hero-heading"
-            className="text-4xl font-extrabold text-gray-900 lg:text-5xl dark:text-white"
-          >
-            {siteMetadata.author}
-          </h1>
-          <h2 className="text-2xl font-semibold text-cyan-500 lg:text-3xl">
-            {siteMetadata.specialization}
-          </h2>
-          <p className="text-md text-gray-600 dark:text-gray-400">{siteMetadata.qualifications}</p>
-          <p className="text-lg text-gray-700 dark:text-gray-300">{siteMetadata.experience}</p>
-        </div>
+        <div className="text-lg text-gray-700 dark:text-gray-300">{siteMetadata.experience}</div>
       </section>
 
       <section className="!mt-10">
