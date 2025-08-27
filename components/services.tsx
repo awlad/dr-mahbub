@@ -18,7 +18,11 @@ const ServiceCard = ({ service, color }) => (
 
 export default function Services() {
   return (
-    <section id="services" className="bg-white py-12 sm:py-16 md:py-20 dark:bg-gray-50" aria-labelledby="services-heading">
+    <section
+      id="services"
+      className="bg-white py-12 sm:py-16 md:py-20 dark:bg-gray-50"
+      aria-labelledby="services-heading"
+    >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
           id="services-heading"
@@ -26,9 +30,13 @@ export default function Services() {
         >
           {services.header}
         </h2>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 [grid-auto-rows:masonry]">
+        <div className="grid [grid-auto-rows:masonry] grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {services.items.map((service, index) => (
-            <ServiceCard key={service} service={service} color={cardColors[index % cardColors.length]} />
+            <ServiceCard
+              key={service}
+              service={service}
+              color={cardColors[index % cardColors.length]}
+            />
           ))}
         </div>
       </div>

@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="text-center text-base text-gray-600 dark:text-gray-300 sm:text-right">
+          <div className="text-center text-base text-gray-600 sm:text-right dark:text-gray-300">
             <p className="font-semibold">{siteMetadata.author}</p>
             <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
             <p className="mt-2">
