@@ -7,37 +7,35 @@ export default function Footer() {
   const { openModal } = useAppointmentModal()
 
   return (
-    <footer className="bg-gray-50 py-6 sm:py-8 dark:bg-gray-950">
-      <div className="flex flex-col items-center space-y-6 px-4">
-        <button
-          onClick={openModal}
-          className="rounded-md bg-cyan-500 px-6 py-2.5 font-semibold text-white transition-colors hover:bg-cyan-600"
-          aria-label="Appointment"
-        >
-          সিরিয়াল
-        </button>
+    <footer className="bg-gray-100 py-8 sm:py-12 dark:bg-gray-900">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-8 sm:flex-row">
+          <div className="flex flex-col items-center gap-4 sm:items-start">
+            <button
+              onClick={openModal}
+              className="rounded-full bg-cyan-500 px-8 py-4 font-bold text-white shadow-lg transition-transform hover:scale-110"
+              aria-label="Appointment"
+            >
+              সিরিয়াল
+            </button>
+            <div className="mt-4 flex flex-wrap justify-center gap-6">
+              <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={7} />
+              <SocialIcon kind="github" href={siteMetadata.github} size={7} />
+              <SocialIcon kind="facebook" href={siteMetadata.facebook} size={7} />
+              <SocialIcon kind="youtube" href={siteMetadata.youtube} size={7} />
+              <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size={7} />
+              <SocialIcon kind="twitter" href={siteMetadata.twitter} size={7} />
+            </div>
+          </div>
 
-        <div className="flex flex-wrap justify-center gap-4 px-2">
-          <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={6} />
-          <SocialIcon kind="github" href={siteMetadata.github} size={6} />
-          <SocialIcon kind="facebook" href={siteMetadata.facebook} size={6} />
-          <SocialIcon kind="youtube" href={siteMetadata.youtube} size={6} />
-          <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size={6} />
-          <SocialIcon kind="twitter" href={siteMetadata.twitter} size={6} />
-          <SocialIcon kind="bluesky" href={siteMetadata.bluesky} size={6} />
-          <SocialIcon kind="x" href={siteMetadata.x} size={6} />
-          <SocialIcon kind="instagram" href={siteMetadata.instagram} size={6} />
-          <SocialIcon kind="threads" href={siteMetadata.threads} size={6} />
-          <SocialIcon kind="medium" href={siteMetadata.medium} size={6} />
-        </div>
-
-        <div className="flex flex-wrap justify-center text-center text-sm text-gray-500 dark:text-gray-400">
-          <div className="px-1">{siteMetadata.author}</div>
-          <div className="hidden sm:block">{` • `}</div>
-          <div className="px-1">{`© ${new Date().getFullYear()}`}</div>
-          <div className="hidden sm:block">{` • `}</div>
-          <div className="px-1">
-            <Link href="/">{siteMetadata.title}</Link>
+          <div className="text-center text-base text-gray-600 dark:text-gray-300 sm:text-right">
+            <p className="font-semibold">{siteMetadata.author}</p>
+            <p>&copy; {new Date().getFullYear()} All Rights Reserved</p>
+            <p className="mt-2">
+              <Link href="/" className="hover:text-cyan-600 dark:hover:text-cyan-500">
+                {siteMetadata.title}
+              </Link>
+            </p>
           </div>
         </div>
       </div>
