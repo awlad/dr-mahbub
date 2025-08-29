@@ -10,9 +10,13 @@ const cardColors = [
 ]
 
 const ServiceCard = ({ service, color }) => (
-  <div className={`rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 ${color}`}>
-    <h3 className="text-lg font-semibold text-gray-800 mb-2 dark:text-gray-900">{service.name}</h3>
-    <p className="text-sm text-gray-600 leading-relaxed dark:text-gray-700">{service.description}</p>
+  <div
+    className={`rounded-xl p-6 shadow-md transition-shadow duration-300 hover:shadow-lg ${color}`}
+  >
+    <h3 className="mb-2 text-lg font-semibold text-gray-800 dark:text-gray-900">{service.name}</h3>
+    <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-700">
+      {service.description}
+    </p>
   </div>
 )
 
