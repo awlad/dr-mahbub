@@ -59,7 +59,7 @@ const siteMetadata = {
     {
       location: 'Dhaka Chamber (Mirpur)',
       name: 'ঢাকা মিরপুর চেম্বার',
-      phone: '09611530530',
+      phone: '09666787807, 09613787807',
       address:
         'Popular Diagnostic Centre Ltd. | Mirpur (Unit 1), House # 67, Avenue # 5, Block # C, Section-6 Mirpur, (Original-10),Pallabi, Dhaka, Dhaka-1216, Bangladesh',
       schedule: 'রবিবার - বৃহস্পতিবার: বিকাল ৫টা - রাত ৯টা',
@@ -69,7 +69,7 @@ const siteMetadata = {
     {
       location: 'Rangpur Chamber',
       name: 'রংপুর চেম্বার',
-      phone: '09611530531',
+      phone: '09613787813, 09666787813',
       address: 'Popular Diagnostic Center, Rangpur',
       schedule: 'শুক্রবার ও শনিবার (সকাল ১১টা - রাত ১০টা)',
       googleMapsEmbedUrl:
@@ -160,107 +160,107 @@ export const services = {
   items: [
     {
       name: 'জন্ডিস (Jaundice)',
-      description: 'জন্ডিস রোগের চিকিৎসা ও ব্যবস্থাপনা'
-    },
-    {
-      name: 'হেপাটাইটিস এ, বি, সি, ডি এবং ই',
-      description: 'সকল প্রকার হেপাটাইটিস রোগের চিকিৎসা'
-    },
-    {
-      name: 'HBsAg পরীক্ষা এবং টিকা',
-      description: 'হেপাটাইটিস বি পরীক্ষা ও প্রতিরোধমূলক টিকা প্রদান'
-    },
-    {
-      name: 'ক্রনিক লিভার ডিজিজ (CLD)',
-      description: 'দীর্ঘমেয়াদি লিভারের রোগের ব্যবস্থাপনা'
-    },
-    {
-      name: 'লিভার সিরোসিস (Liver Cirrhosis)',
-      description: 'লিভার সিরোসিসের আধুনিক চিকিৎসা পদ্ধতি'
-    },
-    {
-      name: 'লিভার অ্যাবসেস (Liver Abscess)',
-      description: 'লিভারে পুঁজ সংক্রমণের চিকিৎসা'
+      description: 'জন্ডিস রোগের চিকিৎসা ও ব্যবস্থাপনা',
     },
     {
       name: 'ফ্যাটি লিভার (Fatty Liver)',
-      description: 'ফ্যাটি লিভারের চিকিৎসা ও খাদ্যাভ্যাস পরিবর্তন'
+      description: 'ফ্যাটি লিভারের চিকিৎসা ও খাদ্যাভ্যাস পরিবর্তন',
+    },
+    {
+      name: 'হেপাটাইটিস এ, বি, সি, ডি এবং ই (Hepatitis A, B, C, D, and E)',
+      description: 'সকল প্রকার হেপাটাইটিস রোগের চিকিৎসা',
+    },
+    {
+      name: 'HBsAg পরীক্ষা এবং টিকা',
+      description: 'হেপাটাইটিস বি পরীক্ষা ও প্রতিরোধমূলক টিকা প্রদান',
+    },
+    {
+      name: 'ক্রনিক লিভার ডিজিজ (CLD)',
+      description: 'দীর্ঘমেয়াদি লিভারের রোগের ব্যবস্থাপনা',
+    },
+    {
+      name: 'লিভার সিরোসিস (Liver Cirrhosis)',
+      description: 'লিভার সিরোসিসের আধুনিক চিকিৎসা পদ্ধতি',
+    },
+    {
+      name: 'লিভার অ্যাবসেস (Liver Abscess)',
+      description: 'লিভারে পুঁজ সংক্রমণের চিকিৎসা',
     },
     {
       name: 'শিশুদের নানা ধরনের লিভারের রোগ',
-      description: 'শিশুদের লিভার সংক্রান্ত রোগের বিশেষজ্ঞ চিকিৎসা'
+      description: 'শিশুদের লিভার সংক্রান্ত রোগের বিশেষজ্ঞ চিকিৎসা',
     },
     {
-      name: 'গিলবার্ট সিনড্রোম (Gilbert\'s Syndrome)',
-      description: 'গিলবার্ট সিনড্রোমের আধুনিক ব্যবস্থাপনা'
+      name: "গিলবার্ট সিনড্রোম (Gilbert's Syndrome)",
+      description: 'গিলবার্ট সিনড্রোমের আধুনিক ব্যবস্থাপনা',
     },
     {
-      name: 'উইলসনস ডিজিজ (Wilson\'s Disease)',
-      description: 'উইলসনস ডিজিজের নির্ভুল নির্ণয় ও চিকিৎসা'
+      name: "উইলসনস ডিজিজ (Wilson's Disease)",
+      description: 'উইলসনস ডিজিজের নির্ভুল নির্ণয় ও চিকিৎসা',
     },
     {
       name: 'লিভার টিউমার (Liver Tumor)',
-      description: 'লিভারের টিউমার নির্ণয় ও চিকিৎসা'
+      description: 'লিভারের টিউমার নির্ণয় ও চিকিৎসা',
     },
     {
       name: 'সিস্ট ও হেমাঞ্জিওমা (Cyst and Hemangioma)',
-      description: 'লিভারের সিস্ট ও হেমাঞ্জিওমার ব্যবস্থাপনা'
+      description: 'লিভারের সিস্ট ও হেমাঞ্জিওমার ব্যবস্থাপনা',
     },
     {
       name: 'লিভার ক্যান্সার (Liver Cancer)',
-      description: 'লিভার ক্যান্সারের আধুনিক চিকিৎসা ও ব্যবস্থাপনা'
+      description: 'লিভার ক্যান্সারের আধুনিক চিকিৎসা ও ব্যবস্থাপনা',
     },
     {
       name: 'রক্ত বমি ও কালো পায়খানা (Hematemesis and Melaena)',
-      description: 'রক্ত বমি ও কালো পায়খানার কারণ নির্ণয় ও চিকিৎসা'
+      description: 'রক্ত বমি ও কালো পায়খানার কারণ নির্ণয় ও চিকিৎসা',
     },
     {
       name: 'দীর্ঘ মেয়াদী আমাশা ও ডায়রিয়া (Chronic Diarrhea)',
-      description: 'দীর্ঘস্থায়ী আমাশা ও ডায়রিয়ার কার্যকরী চিকিৎসা'
+      description: 'দীর্ঘস্থায়ী আমাশা ও ডায়রিয়ার কার্যকরী চিকিৎসা',
     },
     {
       name: 'ইরিটেবল বাওল সিনড্রোম (Irritable Bowel Syndrome- IBS)',
-      description: 'আইবিএস রোগের লক্ষণ নিয়ন্ত্রণ ও চিকিৎসা'
+      description: 'আইবিএস রোগের লক্ষণ নিয়ন্ত্রণ ও চিকিৎসা',
     },
     {
       name: 'পায়খানার দ্বার দিয়ে রক্ত পড়া ও পাইলস (Rectal Bleeding and Piles)',
-      description: 'পাইলস ও রেক্টাল রক্তক্ষরণের চিকিৎসা'
+      description: 'পাইলস ও রেক্টাল রক্তক্ষরণের চিকিৎসা',
     },
     {
       name: 'পেট ব্যথা ও পেটের পীড়া (Abdominal Pain)',
-      description: 'পেট ব্যথার কারণ নির্ণয় ও যথাযথ চিকিৎসা'
+      description: 'পেট ব্যথার কারণ নির্ণয় ও যথাযথ চিকিৎসা',
     },
     {
       name: 'প্যানক্রিয়েটাইটিস (Pancreatitis)',
-      description: 'প্যানক্রিয়াসের প্রদাহের আধুনিক চিকিৎসা'
+      description: 'প্যানক্রিয়াসের প্রদাহের আধুনিক চিকিৎসা',
     },
     {
       name: 'পিত্তথলি পাথর (Gallstone Disease)',
-      description: 'পিত্তথলির পাথরের চিকিৎসা ও ব্যবস্থাপনা'
+      description: 'পিত্তথলির পাথরের চিকিৎসা ও ব্যবস্থাপনা',
     },
     {
       name: 'পিত্তনালীতে পাথর (Bile Duct Stone)',
-      description: 'পিত্তনালীর পাথরের চিকিৎসা ও জটিলতা প্রতিরোধ'
+      description: 'পিত্তনালীর পাথরের চিকিৎসা ও জটিলতা প্রতিরোধ',
     },
     {
       name: 'ইন্টারভেনশনাল প্রসিডিউর সমূহ',
-      description: 'আধুনিক ইন্টারভেনশনাল গ্যাস্ট্রোএন্টেরোলজি সেবা'
+      description: 'আধুনিক ইন্টারভেনশনাল গ্যাস্ট্রোএন্টেরোলজি সেবা',
     },
     {
       name: 'এনডোস্কোপি (Endoscopy)',
-      description: 'আধুনিক এনডোস্কোপি সেবা'
+      description: 'আধুনিক এনডোস্কোপি সেবা',
     },
     {
       name: 'কোলোনোস্কপি (Colonoscopy)',
-      description: 'কোলনের পরীক্ষা ও পলিপ অপসারণ'
+      description: 'কোলনের পরীক্ষা ও পলিপ অপসারণ',
     },
     {
       name: 'এন্ডোস্কপিক ব্যান্ড লিগেশন (EBL)',
-      description: 'পাকস্থলীর ভেরিকস চিকিৎসায় ব্যান্ড লিগেশন'
+      description: 'পাকস্থলীর ভেরিকস চিকিৎসায় ব্যান্ড লিগেশন',
     },
     {
       name: 'বিনা অপারেশনে পেটের পানি অপসারণ (Ascitic Fluid Study)',
-      description: 'পেটের পানি পরীক্ষা ও সুরক্ষিত অপসারণ'
+      description: 'পেটের পানি পরীক্ষা ও সুরক্ষিত অপসারণ',
     },
   ],
 }

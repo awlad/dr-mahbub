@@ -9,6 +9,39 @@ import { ThemeProviders } from '../app/theme-providers'
 import siteMetadata from '@/data/siteMetadata'
 import { AppointmentModalProvider, useAppointmentModal } from '../contexts/AppointmentModalContext'
 import CopyButton from './CopyButton'
+import { useState } from 'react'
+
+const PhoneNumberWithCopy = ({ phone }) => {
+  const [copied, setCopied] = useState(false)
+
+  const copyToClipboard = async (phoneNumber) => {
+    try {
+      await navigator.clipboard.writeText(phoneNumber)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy phone number: ', err)
+    }
+  }
+
+  return (
+    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3 mb-2 dark:bg-gray-700">
+      <a
+        href={`tel:${phone.replace(/\s+/g, '')}`}
+        className="font-mono text-lg font-semibold text-cyan-600 hover:text-cyan-700 transition-colors dark:text-cyan-400 dark:hover:text-cyan-300"
+      >
+        {phone}
+      </a>
+      <button
+        onClick={() => copyToClipboard(phone)}
+        className="ml-2 px-3 py-1 bg-cyan-600 text-white text-sm rounded hover:bg-cyan-700 transition-colors duration-200"
+        aria-label={`Copy phone number ${phone}`}
+      >
+        {copied ? 'Copied!' : 'Copy'}
+      </button>
+    </div>
+  )
+}
 
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -29,33 +62,34 @@ const AppointmentModal = () => {
       <div className="relative w-full max-w-lg scale-95 transform rounded-2xl bg-white p-8 shadow-2xl transition-all duration-300 ease-in-out hover:scale-100 dark:bg-gray-900">
         <div className="text-center">
           <h2 id="modal-title" className="mb-2 text-3xl font-bold text-cyan-500">
-            সিরিয়াল দিন
+            সিরিয়াল দিন
           </h2>
           <p className="mb-6 text-gray-600 dark:text-gray-400">
-            সিরিয়াল এর জন্য নিচের নাম্বারে কল করুন
+            সিরিয়াল এর জন্য নিচের নাম্বারে কল করুন
           </p>
         </div>
 
         <div className="space-y-6">
-          {siteMetadata.chambers.map((chamber, index) => (
-            <div key={index} className="rounded-lg bg-gray-100 p-6 text-center dark:bg-gray-800">
-              <h3 className="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                {chamber.name}
-              </h3>
-              <div className="flex items-center justify-center gap-2">
-                <a
-                  href={`tel:${chamber.phone.replace(/\s+/g, '')}`}
-                  className="text-3xl font-bold text-cyan-500 transition-colors hover:text-cyan-600"
-                >
-                  {chamber.phone}
-                </a>
-                <CopyButton textToCopy={chamber.phone} />
+          {siteMetadata.chambers.map((chamber, index) => {
+            // Split phone numbers by comma and clean them
+            const phoneNumbers = chamber.phone.split(',').map(phone => phone.trim())
+
+            return (
+              <div key={index} className="rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
+                <h3 className="mb-3 text-lg font-semibold text-gray-800 dark:text-gray-200 text-center">
+                  {chamber.name}
+                </h3>
+                <div className="space-y-2">
+                  {phoneNumbers.map((phone, phoneIndex) => (
+                    <PhoneNumberWithCopy key={phoneIndex} phone={phone} />
+                  ))}
+                </div>
+                <address className="mt-3 text-xs text-gray-600 not-italic dark:text-gray-400 text-center">
+                  {chamber.address}
+                </address>
               </div>
-              <address className="mt-4 text-sm whitespace-pre-line text-gray-600 not-italic dark:text-gray-400">
-                {chamber.address}
-              </address>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         <button

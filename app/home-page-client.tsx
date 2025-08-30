@@ -8,26 +8,60 @@ import Chamber from '@/components/Chamber'
 import CopyButton from '@/components/CopyButton'
 import AboutMe from '@/components/AboutMe'
 import LocationMap from '@/components/LocationMap'
+import { useState } from 'react'
+
+const PhoneNumberWithCopy = ({ phone }) => {
+  const [copied, setCopied] = useState(false)
+
+  const copyToClipboard = async (phoneNumber) => {
+    try {
+      await navigator.clipboard.writeText(phoneNumber)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy phone number: ', err)
+    }
+  }
+
+  return (
+    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3 mb-2 dark:bg-gray-700">
+      <a
+        href={`tel:${phone.replace(/\s+/g, '')}`}
+        className="font-mono text-cyan-600 hover:text-cyan-700 transition-colors dark:text-cyan-400 dark:hover:text-cyan-300"
+      >
+        {phone}
+      </a>
+      <button
+        onClick={() => copyToClipboard(phone)}
+        className="ml-2 px-3 py-1 bg-cyan-600 text-white text-sm rounded hover:bg-cyan-700 transition-colors duration-200"
+        aria-label={`Copy phone number ${phone}`}
+      >
+        {copied ? 'Copied!' : 'Copy'}
+      </button>
+    </div>
+  )
+}
 
 const CallForSerial = () => {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-      {siteMetadata.chambers.map((chamber, index) => (
-        <div key={index} className="rounded-lg bg-gray-100 p-6 text-center dark:bg-gray-800">
-          <p className="mb-2 text-xl font-semibold text-gray-700 dark:text-gray-200">
-            {chamber.name}:
-          </p>
-          <div className="flex items-center justify-center gap-2">
-            <a
-              href={`tel:${chamber.phone.replace(/\s+/g, '')}`}
-              className="text-3xl font-bold text-cyan-500 transition-colors hover:text-cyan-600"
-            >
-              {chamber.phone}
-            </a>
-            <CopyButton textToCopy={chamber.phone} />
+      {siteMetadata.chambers.map((chamber, index) => {
+        // Split phone numbers by comma and clean them
+        const phoneNumbers = chamber.phone.split(',').map(phone => phone.trim())
+
+        return (
+          <div key={index} className="rounded-lg bg-gray-100 p-6 dark:bg-gray-800">
+            <p className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 text-center">
+              {chamber.name}:
+            </p>
+            <div className="space-y-2">
+              {phoneNumbers.map((phone, phoneIndex) => (
+                <PhoneNumberWithCopy key={phoneIndex} phone={phone} />
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
