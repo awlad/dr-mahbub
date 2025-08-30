@@ -17,11 +17,11 @@ const PhoneNumberWithCopy = ({ phone }) => {
   }
 
   return (
-    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3 mb-2 dark:bg-gray-700">
+    <div className="mb-2 flex items-center justify-between rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
       <span className="font-mono text-gray-900 dark:text-white">{phone}</span>
       <button
         onClick={() => copyToClipboard(phone)}
-        className="ml-2 px-3 py-1 bg-cyan-600 text-white text-sm rounded hover:bg-cyan-700 transition-colors duration-200"
+        className="ml-2 rounded bg-cyan-600 px-3 py-1 text-sm text-white transition-colors duration-200 hover:bg-cyan-700"
         aria-label={`Copy phone number ${phone}`}
       >
         {copied ? 'Copied!' : 'Copy'}
@@ -49,7 +49,7 @@ const Chamber = () => {
         <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-2">
           {siteMetadata.chambers.map((chamber, index) => {
             // Split phone numbers by comma and clean them
-            const phoneNumbers = chamber.phone.split(',').map(phone => phone.trim())
+            const phoneNumbers = chamber.phone.split(',').map((phone) => phone.trim())
 
             return (
               <div
@@ -62,7 +62,7 @@ const Chamber = () => {
 
                   {/* Phone Numbers Section */}
                   <div className="mb-4">
-                    <span className="font-semibold text-gray-900 dark:text-white mb-2 block">
+                    <span className="mb-2 block font-semibold text-gray-900 dark:text-white">
                       যোগাযোগ নম্বর:
                     </span>
                     {phoneNumbers.map((phone, phoneIndex) => (

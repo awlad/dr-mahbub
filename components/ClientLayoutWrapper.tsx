@@ -25,16 +25,16 @@ const PhoneNumberWithCopy = ({ phone }) => {
   }
 
   return (
-    <div className="flex items-center justify-between bg-gray-50 rounded-lg p-3 mb-2 dark:bg-gray-700">
+    <div className="mb-2 flex items-center justify-between rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
       <a
         href={`tel:${phone.replace(/\s+/g, '')}`}
-        className="font-mono text-lg font-semibold text-cyan-600 hover:text-cyan-700 transition-colors dark:text-cyan-400 dark:hover:text-cyan-300"
+        className="font-mono text-lg font-semibold text-cyan-600 transition-colors hover:text-cyan-700 dark:text-cyan-400 dark:hover:text-cyan-300"
       >
         {phone}
       </a>
       <button
         onClick={() => copyToClipboard(phone)}
-        className="ml-2 px-3 py-1 bg-cyan-600 text-white text-sm rounded hover:bg-cyan-700 transition-colors duration-200"
+        className="ml-2 rounded bg-cyan-600 px-3 py-1 text-sm text-white transition-colors duration-200 hover:bg-cyan-700"
         aria-label={`Copy phone number ${phone}`}
       >
         {copied ? 'Copied!' : 'Copy'}
@@ -72,11 +72,11 @@ const AppointmentModal = () => {
         <div className="space-y-6">
           {siteMetadata.chambers.map((chamber, index) => {
             // Split phone numbers by comma and clean them
-            const phoneNumbers = chamber.phone.split(',').map(phone => phone.trim())
+            const phoneNumbers = chamber.phone.split(',').map((phone) => phone.trim())
 
             return (
               <div key={index} className="rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
-                <h3 className="mb-3 text-lg font-semibold text-gray-800 dark:text-gray-200 text-center">
+                <h3 className="mb-3 text-center text-lg font-semibold text-gray-800 dark:text-gray-200">
                   {chamber.name}
                 </h3>
                 <div className="space-y-2">
@@ -84,7 +84,7 @@ const AppointmentModal = () => {
                     <PhoneNumberWithCopy key={phoneIndex} phone={phone} />
                   ))}
                 </div>
-                <address className="mt-3 text-xs text-gray-600 not-italic dark:text-gray-400 text-center">
+                <address className="mt-3 text-center text-xs text-gray-600 not-italic dark:text-gray-400">
                   {chamber.address}
                 </address>
               </div>
