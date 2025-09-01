@@ -12,10 +12,7 @@ const GoogleAnalytics = () => {
 
   return (
     <>
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gtagId}`}
-      />
+      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${gtagId}`} />
       <Script strategy="lazyOnload" id="gtag-init">
         {`
           window.dataLayer = window.dataLayer || [];
