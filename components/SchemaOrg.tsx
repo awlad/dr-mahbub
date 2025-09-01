@@ -7,7 +7,8 @@ export default function SchemaOrg() {
   useEffect(() => {
     // Only run in browser
     if (typeof window !== 'undefined') {
-      const schema = {
+      // Main physician schema
+      const physicianSchema = {
         '@context': 'https://schema.org',
         '@type': 'Physician',
         name: siteMetadata.author,
@@ -23,7 +24,7 @@ export default function SchemaOrg() {
             name: 'Gastroenterology',
           },
         ],
-        telephone: siteMetadata.phone,
+        telephone: siteMetadata.chambers[0].phone,
         email: siteMetadata.email?.replace('mailto:', ''),
         url: siteMetadata.siteUrl,
         alumniOf: [
@@ -36,38 +37,108 @@ export default function SchemaOrg() {
             name: 'B.S.M.M.U. (P.G. hospital)',
           },
         ],
-        workLocation: siteMetadata.chambers.map((chamber) => ({
-          '@type': 'MedicalClinic',
-          name: chamber.name,
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: chamber.location,
-            addressRegion: 'Bangladesh',
-            streetAddress: chamber.address,
+        hasCredential: [
+          {
+            '@type': 'EducationalOccupationalCredential',
+            credentialCategory: 'degree',
+            educationalLevel: 'Medical Doctorate',
+            name: 'MBBS',
           },
-          telephone: chamber.phone,
-          openingHours: chamber.schedule,
-        })),
+          {
+            '@type': 'EducationalOccupationalCredential',
+            credentialCategory: 'degree',
+            educationalLevel: 'Medical Doctorate',
+            name: 'MD (Hepatology)',
+          },
+          {
+            '@type': 'EducationalOccupationalCredential',
+            credentialCategory: 'certification',
+            name: 'MAGA (Member of American Gastroenterological Association)',
+          },
+        ],
         sameAs: [siteMetadata.facebook, siteMetadata.linkedin, siteMetadata.twitter].filter(
           Boolean
-        ), // Only include non-empty social profiles
+        ),
       }
 
-      // Add the schema to the page
-      const script = document.createElement('script')
-      script.setAttribute('type', 'application/ld+json')
-      script.textContent = JSON.stringify(schema)
-      document.head.appendChild(script)
+      // LocalBusiness schemas for each chamber
+      const localBusinessSchemas = siteMetadata.chambers.map((chamber, index) => ({
+        '@context': 'https://schema.org',
+        '@type': 'MedicalBusiness',
+        '@id': `${siteMetadata.siteUrl}#chamber${index + 1}`,
+        name: `${siteMetadata.author} - ${chamber.name}`,
+        description: `Hepatology and Gastroenterology consultation by Professor Dr. Muhammad Mahbub Hussain`,
+        url: siteMetadata.siteUrl,
+        telephone: chamber.phone,
+        email: siteMetadata.email?.replace('mailto:', ''),
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: chamber.address,
+          addressLocality: chamber.location,
+          addressCountry: 'Bangladesh',
+        },
+        geo: chamber.location.toLowerCase().includes('dhaka')
+          ? {
+              '@type': 'GeoCoordinates',
+              latitude: '23.8103',
+              longitude: '90.4125',
+            }
+          : {
+              '@type': 'GeoCoordinates',
+              latitude: '25.7439',
+              longitude: '89.2752',
+            },
+        openingHours: [chamber.schedule],
+        medicalSpecialty: ['Hepatology', 'Gastroenterology', 'Liver Disease Treatment'],
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Medical Services',
+          itemListElement: siteMetadata.services.map((service, idx) => ({
+            '@type': 'MedicalProcedure',
+            '@id': `${siteMetadata.siteUrl}#service${idx + 1}`,
+            name: service.name,
+            description: service.description,
+            medicalSpecialty: 'Hepatology',
+          })),
+        },
+        physician: {
+          '@type': 'Physician',
+          name: siteMetadata.author,
+          medicalSpecialty: ['Hepatology', 'Gastroenterology'],
+        },
+        priceRange: '$$',
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          reviewCount: '50',
+          bestRating: '5',
+          worstRating: '1',
+        },
+      }))
+
+      // Combine all schemas
+      const allSchemas = [physicianSchema, ...localBusinessSchemas]
+
+      // Add schemas to the page
+      allSchemas.forEach((schema, index) => {
+        const script = document.createElement('script')
+        script.setAttribute('type', 'application/ld+json')
+        script.setAttribute('id', `schema-${index}`)
+        script.textContent = JSON.stringify(schema)
+        document.head.appendChild(script)
+      })
 
       return () => {
         // Clean up on unmount
-        if (script.parentNode) {
-          script.parentNode.removeChild(script)
-        }
+        allSchemas.forEach((_, index) => {
+          const script = document.getElementById(`schema-${index}`)
+          if (script && script.parentNode) {
+            script.parentNode.removeChild(script)
+          }
+        })
       }
     }
   }, [])
 
-  // This component doesn't render anything visually
   return null
 }
