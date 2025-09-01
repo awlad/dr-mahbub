@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.drmahbubhussain.com/sitemap.xml
+
+# Block unnecessary crawling
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /*.json$
+
+# Allow important medical content
+Allow: /static/images/
+
+# Crawl delay (optional - can help with server load)
+Crawl-delay: 1

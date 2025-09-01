@@ -3,6 +3,7 @@ import 'pliny/search/algolia.css'
 import 'remark-github-blockquote-alert/alert.css'
 
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 import siteMetadata, { services } from '@/data/siteMetadata'
 import { Metadata } from 'next'
@@ -147,6 +148,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
+        <GoogleAnalytics />
       </body>
     </html>
   )
