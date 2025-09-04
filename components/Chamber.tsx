@@ -35,7 +35,7 @@ const Chamber = () => {
 
   return (
     <section
-      id="chamber"
+      id="chamber-section"
       className="bg-gray-100 py-12 dark:bg-gray-800"
       aria-labelledby="chambers-heading"
     >

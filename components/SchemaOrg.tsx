@@ -119,7 +119,46 @@ export default function SchemaOrg() {
       }))
 
       // Combine all schemas
-      const allSchemas = [physicianSchema, ...localBusinessSchemas]
+      const allSchemas = [
+        physicianSchema,
+        ...localBusinessSchemas,
+        // Add WebPage schema with sections
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          '@id': `${siteMetadata.siteUrl}#webpage`,
+          url: siteMetadata.siteUrl,
+          name: siteMetadata.title,
+          description: siteMetadata.description,
+          // Mark up main sections of the page
+          mainContentOfPage: [
+            {
+              '@type': 'WebPageElement',
+              '@id': `${siteMetadata.siteUrl}#about-me`,
+              name: 'About Professor Dr. Muhammad Mahbub Hussain',
+              isPartOf: {
+                '@id': `${siteMetadata.siteUrl}#webpage`,
+              },
+            },
+            {
+              '@type': 'WebPageElement',
+              '@id': `${siteMetadata.siteUrl}#services`,
+              name: siteMetadata.services?.header || 'Services',
+              isPartOf: {
+                '@id': `${siteMetadata.siteUrl}#webpage`,
+              },
+            },
+            {
+              '@type': 'WebPageElement',
+              '@id': `${siteMetadata.siteUrl}#chamber-section`,
+              name: 'Chambers',
+              isPartOf: {
+                '@id': `${siteMetadata.siteUrl}#webpage`,
+              },
+            },
+          ],
+        },
+      ]
 
       // Add schemas to the page
       allSchemas.forEach((schema, index) => {
