@@ -93,13 +93,15 @@ export default function SchemaOrg() {
         hasOfferCatalog: {
           '@type': 'OfferCatalog',
           name: 'Medical Services',
-          itemListElement: siteMetadata.services.map((service, idx) => ({
-            '@type': 'MedicalProcedure',
-            '@id': `${siteMetadata.siteUrl}#service${idx + 1}`,
-            name: service.name,
-            description: service.description,
-            medicalSpecialty: 'Hepatology',
-          })),
+          itemListElement: siteMetadata.services?.items
+            ? siteMetadata.services.items.map((service, idx) => ({
+                '@type': 'MedicalProcedure',
+                '@id': `${siteMetadata.siteUrl}#service${idx + 1}`,
+                name: service.name,
+                description: service.description,
+                medicalSpecialty: 'Hepatology',
+              }))
+            : [],
         },
         physician: {
           '@type': 'Physician',
