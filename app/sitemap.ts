@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return !excludePosts.some((excludePost) => post.path.includes(excludePost))
     })
     .map((post) => ({
-      url: `${siteUrl}/${post.path}`,
+      url: `${siteUrl}${post.path.startsWith('/') ? post.path : `/${post.path}`}`,
       lastModified: post.lastmod || post.date,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
