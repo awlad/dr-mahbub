@@ -1,6 +1,7 @@
 'use client'
 
 import siteMetadata, { headerNavLinks } from '@/data/siteMetadata'
+import { usePathname } from 'next/navigation'
 import Image from './Image'
 import Link from './Link'
 import MobileNav from './MobileNav'
@@ -8,7 +9,16 @@ import { useAppointmentModal } from '../contexts/AppointmentModalContext'
 
 const Header = () => {
   const { openModal } = useAppointmentModal()
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
   const headerClass = `w-full py-4 sm:py-6 bg-white dark:bg-gray-900 ${siteMetadata.stickyNav ? 'sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800' : ''}`
+
+  const handleLinkClick = (link) => {
+    if (link.isModalTrigger && isHomePage) {
+      openModal()
+      return
+    }
+  }
 
   return (
     <header className={headerClass}>
@@ -33,16 +43,22 @@ const Header = () => {
             onClick={openModal}
             className="rounded-full bg-cyan-500 px-6 py-3 font-bold text-white shadow-lg transition-transform hover:scale-110 sm:hidden"
           >
-            সিরিয়াল
+            সিরিয়াল
           </button>
           <div className="hidden items-center space-x-8 sm:flex">
             {headerNavLinks
               .filter((link) => link.path !== '/')
-              .map((link) =>
-                link.isModalTrigger ? (
+              .map((link) => {
+                const linkHref = link.isHybrid
+                  ? isHomePage
+                    ? link.path
+                    : link.fullPagePath
+                  : link.path
+
+                return link.isModalTrigger && isHomePage ? (
                   <button
                     key={link.title}
-                    onClick={openModal}
+                    onClick={() => openModal()}
                     className="rounded-full bg-cyan-500 px-8 py-4 font-bold text-white shadow-lg transition-transform hover:scale-110"
                   >
                     {link.title}
@@ -50,13 +66,14 @@ const Header = () => {
                 ) : (
                   <Link
                     key={link.title}
-                    href={link.path}
+                    href={linkHref}
                     className="font-semibold text-gray-800 transition-colors hover:text-cyan-600 dark:text-gray-200 dark:hover:text-cyan-500"
+                    onClick={link.isModalTrigger ? () => handleLinkClick(link) : undefined}
                   >
                     {link.title}
                   </Link>
                 )
-              )}
+              })}
           </div>
           {/*<LanguageSwitcher />*/}
           <MobileNav />

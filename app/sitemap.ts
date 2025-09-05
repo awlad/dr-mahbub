@@ -49,18 +49,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.9,
     },
-    // Add medical-specific pages if they exist as separate routes
     {
-      url: `${siteUrl}/#services`,
+      url: `${siteUrl}/services`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/#chamber`,
+      url: `${siteUrl}/chambers`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/appointment`,
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
     },
     // Only include blog if you plan to have medical content
     ...(blogRoutes.length > 0
