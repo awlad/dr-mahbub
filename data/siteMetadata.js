@@ -18,6 +18,7 @@ const siteMetadata = {
   youtube: '', // Add doctor's YouTube channel
   linkedin: '', // Add doctor's LinkedIn profile
   locale: 'en-US',
+  blogEnabled: false, // Flag to control blog functionality and RSS feed generation
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
   analytics: {
@@ -159,7 +160,7 @@ export const achievements = [
 ]
 
 export const services = {
-  header: 'যে সমস্ত রোগের জন্য পরামর্শ দেয়া হয়',
+  header: 'যে সমস্ত রোগের জন্য পরামর্শ দেয়া হ��়',
   items: [
     {
       name: 'জন্ডিস (Jaundice)',
@@ -191,10 +192,10 @@ export const services = {
     },
     {
       name: 'শিশুদের নানা ধরনের লিভারের রোগ',
-      description: 'শিশুদের লিভার সংক্রান্ত রোগের বিশেষজ্ঞ চিকিৎসা',
+      description: 'শিশুদের লিভার সংক্রান্ত র��গের বিশেষজ্ঞ চিকিৎসা',
     },
     {
-      name: "গিলবার্ট সিনড্রোম (Gilbert's Syndrome)",
+      name: "গিলবার্ট সিনড���রোম (Gilbert's Syndrome)",
       description: 'গিলবার্ট সিনড্রোমের আধুনিক ব্যবস্থাপনা',
     },
     {
@@ -239,7 +240,7 @@ export const services = {
     },
     {
       name: 'পিত্তথলি পাথর (Gallstone Disease)',
-      description: 'পিত্তথলির পাথরের চিকিৎসা ও ব্যবস্থাপনা',
+      description: 'পিত্তথলির পাথরের চিকিৎসা ও ব্যবস্থাপন���',
     },
     {
       name: 'পিত্তনালীতে পাথর (Bile Duct Stone)',
@@ -259,7 +260,7 @@ export const services = {
     },
     {
       name: 'এন্ডোস্কপিক ব্যান্ড লিগেশন (EBL)',
-      description: 'পাকস্থলীর ভেরিকস চিকিৎসায় ব্যান্ড লিগেশন',
+      description: 'পাকস্থলীর ভেরিকস চিকিৎসায় ব্��ান্ড লিগেশন',
     },
     {
       name: 'বিনা অপারেশনে পেটের পানি অপসারণ (Ascitic Fluid Study)',
