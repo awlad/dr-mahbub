@@ -50,133 +50,141 @@ export default function SchemaOrg() {
             educationalLevel: 'Medical Doctorate',
             name: 'MD (Hepatology)',
           },
+        ],
+        // Add detailed health services offered
+        availableService: siteMetadata.services.items.map((service) => ({
+          '@type': 'MedicalProcedure',
+          name: service.name,
+          description: service.description,
+        })),
+        // Add workplaces
+        workLocation: siteMetadata.chambers.map((chamber) => ({
+          '@type': 'MedicalClinic',
+          name: chamber.name,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: chamber.address,
+            addressLocality: chamber.location.split(' ')[0],
+            addressRegion: 'Dhaka',
+            addressCountry: 'Bangladesh',
+          },
+          telephone: chamber.phone,
+          openingHoursSpecification: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: chamber.location.includes('Rangpur')
+              ? ['Friday', 'Saturday']
+              : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+            opens: chamber.location.includes('Rangpur') ? '11:00' : '17:00',
+            closes: chamber.location.includes('Rangpur') ? '22:00' : '21:00',
+          },
+        })),
+        // Add expertise in treating medical conditions
+        recognizingAuthority: [
           {
-            '@type': 'EducationalOccupationalCredential',
-            credentialCategory: 'certification',
-            name: 'MAGA (Member of American Gastroenterological Association)',
+            '@type': 'Organization',
+            name: 'American Gastroenterological Association',
+          },
+          {
+            '@type': 'Organization',
+            name: 'Bangladesh Medical and Dental Council',
           },
         ],
-        sameAs: [siteMetadata.facebook, siteMetadata.linkedin, siteMetadata.twitter].filter(
-          Boolean
-        ),
       }
 
-      // LocalBusiness schemas for each chamber
-      const localBusinessSchemas = siteMetadata.chambers.map((chamber, index) => ({
+      // Add local business schema for both chambers
+      const localBusinessSchemas = siteMetadata.chambers.map((chamber) => ({
         '@context': 'https://schema.org',
         '@type': 'MedicalBusiness',
-        '@id': `${siteMetadata.siteUrl}#chamber${index + 1}`,
         name: `${siteMetadata.author} - ${chamber.name}`,
-        description: `Hepatology and Gastroenterology consultation by Professor Dr. Muhammad Mahbub Hussain`,
-        url: siteMetadata.siteUrl,
+        image: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+        '@id': `${siteMetadata.siteUrl}#${chamber.location.toLowerCase().replace(/\s+/g, '-')}`,
+        url: `${siteMetadata.siteUrl}/chambers`,
         telephone: chamber.phone,
-        email: siteMetadata.email?.replace('mailto:', ''),
         address: {
           '@type': 'PostalAddress',
           streetAddress: chamber.address,
-          addressLocality: chamber.location,
+          addressLocality: chamber.location.split(' ')[0],
+          addressRegion: 'Dhaka',
           addressCountry: 'Bangladesh',
         },
-        geo: chamber.location.toLowerCase().includes('dhaka')
-          ? {
-              '@type': 'GeoCoordinates',
-              latitude: '23.8103',
-              longitude: '90.4125',
-            }
-          : {
-              '@type': 'GeoCoordinates',
-              latitude: '25.7439',
-              longitude: '89.2752',
-            },
-        openingHours: [chamber.schedule],
-        medicalSpecialty: ['Hepatology', 'Gastroenterology', 'Liver Disease Treatment'],
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: 'Medical Services',
-          itemListElement: siteMetadata.services?.items
-            ? siteMetadata.services.items.map((service, idx) => ({
-                '@type': 'MedicalProcedure',
-                '@id': `${siteMetadata.siteUrl}#service${idx + 1}`,
-                name: service.name,
-                description: service.description,
-                medicalSpecialty: 'Hepatology',
-              }))
-            : [],
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: chamber.location.includes('Rangpur') ? '25.7439' : '23.8103',
+          longitude: chamber.location.includes('Rangpur') ? '89.2752' : '90.4125',
         },
-        physician: {
-          '@type': 'Physician',
-          name: siteMetadata.author,
-          medicalSpecialty: ['Hepatology', 'Gastroenterology'],
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: chamber.location.includes('Rangpur')
+            ? ['Friday', 'Saturday']
+            : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+          opens: chamber.location.includes('Rangpur') ? '11:00' : '17:00',
+          closes: chamber.location.includes('Rangpur') ? '22:00' : '21:00',
         },
-        priceRange: '$$',
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.8',
-          reviewCount: '50',
-          bestRating: '5',
-          worstRating: '1',
-        },
+        priceRange: '৳৳',
+        servesCuisine: 'Medical Services',
       }))
 
-      // Combine all schemas
-      const allSchemas = [
-        physicianSchema,
-        ...localBusinessSchemas,
-        // Add WebPage schema with sections
-        {
-          '@context': 'https://schema.org',
-          '@type': 'WebPage',
-          '@id': `${siteMetadata.siteUrl}#webpage`,
-          url: siteMetadata.siteUrl,
-          name: siteMetadata.title,
-          description: siteMetadata.description,
-          // Mark up main sections of the page
-          mainContentOfPage: [
-            {
-              '@type': 'WebPageElement',
-              '@id': `${siteMetadata.siteUrl}#about-me`,
-              name: 'About Professor Dr. Muhammad Mahbub Hussain',
-              isPartOf: {
-                '@id': `${siteMetadata.siteUrl}#webpage`,
-              },
-            },
-            {
-              '@type': 'WebPageElement',
-              '@id': `${siteMetadata.siteUrl}#services`,
-              name: siteMetadata.services?.header || 'Services',
-              isPartOf: {
-                '@id': `${siteMetadata.siteUrl}#webpage`,
-              },
-            },
-            {
-              '@type': 'WebPageElement',
-              '@id': `${siteMetadata.siteUrl}#chamber-section`,
-              name: 'Chambers',
-              isPartOf: {
-                '@id': `${siteMetadata.siteUrl}#webpage`,
-              },
-            },
-          ],
+      // Add WebSite schema
+      const websiteSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': `${siteMetadata.siteUrl}#website`,
+        url: siteMetadata.siteUrl,
+        name: siteMetadata.title,
+        description: siteMetadata.description,
+        publisher: {
+          '@type': 'Person',
+          name: siteMetadata.author,
         },
-      ]
+        inLanguage: 'bn-BD',
+      }
 
-      // Add schemas to the page
-      allSchemas.forEach((schema, index) => {
-        const script = document.createElement('script')
-        script.setAttribute('type', 'application/ld+json')
-        script.setAttribute('id', `schema-${index}`)
-        script.textContent = JSON.stringify(schema)
-        document.head.appendChild(script)
-      })
+      // Create breadcrumb schema for navigation structure
+      const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: siteMetadata.siteUrl,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'চেম্বার',
+            item: `${siteMetadata.siteUrl}/chambers`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'সেবা সমূহ',
+            item: `${siteMetadata.siteUrl}/services`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 4,
+            name: 'সি��িয়াল',
+            item: `${siteMetadata.siteUrl}/appointment`,
+          },
+        ],
+      }
+
+      // Add all schemas to the page
+      const allSchemas = [physicianSchema, ...localBusinessSchemas, websiteSchema, breadcrumbSchema]
+
+      // Add the schema to the head
+      const script = document.createElement('script')
+      script.setAttribute('type', 'application/ld+json')
+      script.textContent = JSON.stringify(allSchemas)
+      document.head.appendChild(script)
 
       return () => {
-        // Clean up on unmount
-        allSchemas.forEach((_, index) => {
-          const script = document.getElementById(`schema-${index}`)
-          if (script && script.parentNode) {
-            script.parentNode.removeChild(script)
-          }
-        })
+        // Clean up
+        if (script.parentNode) {
+          document.head.removeChild(script)
+        }
       }
     }
   }, [])
