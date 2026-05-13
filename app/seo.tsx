@@ -39,7 +39,10 @@ export function genPageMetadata({
       images: image ? [image] : [siteMetadata.socialBanner],
       locale: 'bn_BD',
       type: 'website',
-      phoneNumbers: siteMetadata.chambers.map((chamber) => chamber.phone).flat().join(', '),
+      phoneNumbers: siteMetadata.chambers
+        .map((chamber) => chamber.phone)
+        .flat()
+        .join(', '),
       emails: [siteMetadata.email?.replace('mailto:', '')],
       countryName: 'Bangladesh',
     },

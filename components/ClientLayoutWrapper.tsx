@@ -43,9 +43,6 @@ const PhoneNumberWithCopy = ({ phone }) => {
   )
 }
 
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 const AppointmentModal = () => {
   const { showModal, closeModal } = useAppointmentModal()
 
@@ -141,9 +138,6 @@ const FloatingAppointmentButton = () => {
     </button>
   )
 }
-/* eslint-enable jsx-a11y/click-events-have-key-events */
-/* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-enable jsx-a11y/no-static-element-interactions */
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   return (

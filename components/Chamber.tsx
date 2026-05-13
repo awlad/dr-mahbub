@@ -76,16 +76,15 @@ const Chamber = () => {
                   </div>
                 </div>
                 <div className="h-80 w-full">
-                  {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
                   <iframe
                     src={chamber.googleMapsEmbedUrl}
+                    title={`Google Map for ${chamber.name} - ${chamber.location}`}
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen={true}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title={`Google Map for ${chamber.name} - ${chamber.location}`}
                   ></iframe>
                 </div>
               </div>
