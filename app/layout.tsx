@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const basePath = process.env.BASE_PATH || ''
 
   return (
-    <html className="scroll-smooth" lang="en">
+    <html className="scroll-smooth" lang="en" suppressHydrationWarning>
       <head>
         <link
           rel="apple-touch-icon"
@@ -97,7 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Server-rendered structured data — crawlable by Google */}
         <SchemaOrg />
       </head>
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body suppressHydrationWarning className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
         <GoogleAnalytics />
       </body>

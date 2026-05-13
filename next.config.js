@@ -69,9 +69,6 @@ module.exports = () => {
     reactStrictMode: true,
     trailingSlash: false,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-    eslint: {
-      dirs: ['app', 'components', 'layouts', 'scripts'],
-    },
     images: {
       remotePatterns: [
         {
@@ -81,10 +78,14 @@ module.exports = () => {
       ],
       unoptimized,
     },
-    i18n: {
-      locales: ['en', 'bn'],
-      defaultLocale: 'en',
-      localeDetection: false,
+    // Turbopack config (default in Next.js 16) — replaces webpack SVG config
+    turbopack: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
     },
     async headers() {
       return [
@@ -93,14 +94,6 @@ module.exports = () => {
           headers: securityHeaders,
         },
       ]
-    },
-    webpack: (config, options) => {
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-      })
-
-      return config
     },
   })
 }
