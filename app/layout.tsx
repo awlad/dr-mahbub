@@ -4,28 +4,33 @@ import 'remark-github-blockquote-alert/alert.css'
 
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import SchemaOrg from '@/components/SchemaOrg'
 
-import siteMetadata, { services } from '@/data/siteMetadata'
+import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
   title: {
     default: siteMetadata.title,
-    template: `%s | ${siteMetadata.title}`,
+    template: `%s | Prof. Dr. Muhammad Mahbub Hussain — Hepatologist Mirpur Dhaka`,
   },
   description: siteMetadata.description,
+  keywords: siteMetadata.keywords,
+  authors: [{ name: siteMetadata.author, url: siteMetadata.siteUrl }],
+  creator: siteMetadata.author,
+  publisher: siteMetadata.author,
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
-    url: './',
+    url: siteMetadata.siteUrl,
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: 'en_US',
+    locale: 'bn_BD',
     type: 'website',
   },
   alternates: {
-    canonical: './',
+    canonical: siteMetadata.siteUrl,
     types: {
       'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
     },
@@ -45,6 +50,14 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     card: 'summary_large_image',
     images: [siteMetadata.socialBanner],
+  },
+  other: {
+    'geo.region': 'BD-13',
+    'geo.placename': 'Mirpur, Dhaka, Bangladesh',
+    'geo.position': '23.8239;90.3658',
+    ICBM: '23.8239, 90.3658',
+    'revisit-after': '7 days',
+    'format-detection': 'telephone=yes',
   },
 }
 
@@ -81,70 +94,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Physician',
-            name: siteMetadata.author,
-            url: siteMetadata.siteUrl,
-            image: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
-            description: siteMetadata.description,
-            medicalSpecialty: [
-              {
-                '@type': 'MedicalSpecialty',
-                name: 'Hepatology',
-              },
-              {
-                '@type': 'MedicalSpecialty',
-                name: 'Gastroenterology',
-              },
-            ],
-            availableService: services.items.map((service) => ({
-              '@type': 'MedicalProcedure',
-              name: service,
-            })),
-            telephone: siteMetadata.phone,
-            email: siteMetadata.email?.replace('mailto:', ''),
-            sameAs: [
-              siteMetadata.facebook,
-              siteMetadata.twitter,
-              siteMetadata.linkedin,
-              siteMetadata.youtube,
-            ].filter(Boolean),
-            hasCredential: [
-              {
-                '@type': 'EducationalOccupationalCredential',
-                credentialCategory: 'degree',
-                name: 'MBBS',
-              },
-              {
-                '@type': 'EducationalOccupationalCredential',
-                credentialCategory: 'degree',
-                name: 'MD (Hepatology)',
-              },
-              {
-                '@type': 'EducationalOccupationalCredential',
-                credentialCategory: 'professional',
-                name: 'MAGA (Member of American Gastroenterological Association)',
-              },
-            ],
-            workLocation: siteMetadata.chambers.map((chamber) => ({
-              '@type': 'MedicalClinic',
-              name: chamber.name,
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: chamber.address,
-                addressLocality: chamber.location.split(',')[0],
-                addressRegion: 'Bangladesh',
-              },
-              telephone: chamber.phone,
-              openingHoursSpecification: {
-                '@type': 'OpeningHoursSpecification',
-                description: chamber.schedule,
-              },
-            })),
-          })}
-        </script>
+        {/* Server-rendered structured data — crawlable by Google */}
+        <SchemaOrg />
       </head>
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <ClientLayoutWrapper>{children}</ClientLayoutWrapper>

@@ -3,37 +3,34 @@ import Services from '@/components/services'
 import siteMetadata, { services } from '@/data/siteMetadata'
 
 export const metadata = {
-  title: `${services.header} | Liver Disease Treatments | Hepatologist Services | ${siteMetadata.author}`,
+  title: `Liver Medicine & Gastroenterology Services in Mirpur Dhaka | ${siteMetadata.author}`,
   description:
-    'সকল ধরনের লিভার ও পেটের রোগের চিকিৎসা পরিষেবা - জন্ডিস, ফ্যাটি লিভার, হেপাটাইটিস। Liver and gastroenterology treatments including jaundice, fatty liver, hepatitis, gallstones, endoscopy, and colonoscopy services.',
+    'Complete Liver Medicine & Gastroenterology services at Popular Diagnostic Centre, Mirpur, Dhaka. Jaundice, Hepatitis, Fatty Liver, Liver Cirrhosis, Endoscopy, Colonoscopy treatment by Prof. Dr. Muhammad Mahbub Hussain — Best Hepatologist in Mirpur Dhaka.',
   alternates: {
     canonical: `${siteMetadata.siteUrl}/services`,
-    languages: {
-      'en-US': `${siteMetadata.siteUrl}/services`,
-      'bn-BD': `${siteMetadata.siteUrl}/services`,
-    },
   },
   openGraph: {
-    title: `${services.header} | Medical Services | ${siteMetadata.author}`,
+    title: `Liver Medicine & Gastroenterology Services in Mirpur Dhaka | ${siteMetadata.author}`,
     description:
-      'সকল ধরনের লিভার ও পেটের রোগের চিকিৎসা পরিষেবা - জন্ডিস, ফ্যাটি লিভার, হেপাটাইটিস। Liver and gastroenterology treatments by Prof. Dr. Muhammad Mahbub Hussain.',
+      'Liver Medicine & Gastroenterology services: Jaundice, Hepatitis, Fatty Liver, Liver Cirrhosis, Endoscopy & Colonoscopy at Popular Diagnostic Centre, Mirpur, Dhaka.',
     url: `${siteMetadata.siteUrl}/services`,
     siteName: siteMetadata.title,
     locale: 'bn_BD',
-    alternateLocale: 'en_US',
     type: 'website',
   },
   keywords: [
-    'লিভার স্পেশালিস্ট ঢাকা',
-    'Liver specialist Dhaka',
+    'Liver Medicine Mirpur',
+    'Liver Medicine Dhaka',
+    'Gastroenterology Mirpur',
+    'Gastroenterology services Dhaka',
+    'লিভার স্পেশালিস্ট ঢাকা মিরপুর',
+    'Liver specialist Dhaka Mirpur',
     'গ্যাস্ট্রোএন্টারোলজিস্ট ঢাকা',
-    'Gastroenterologist Dhaka',
-    'ফ্যাটি লিভার চিকিৎসা',
-    'Fatty liver treatment',
-    'জন্ডিস চিকিৎসা',
-    'Jaundice treatment',
-    'হেপাটাইটিস ডাক্তার বাংলাদেশ',
-    'Hepatitis doctor Bangladesh',
+    'Fatty liver treatment Mirpur',
+    'Jaundice treatment Mirpur',
+    'Hepatitis doctor Mirpur',
+    'Endoscopy Mirpur',
+    'Colonoscopy Mirpur',
   ],
 }
 

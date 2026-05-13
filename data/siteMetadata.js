@@ -1,10 +1,11 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Professor Dr. Muhammad Mahbub Hussain - Hepatologist & Gastroenterologist in Dhaka',
+  title:
+    'Best Hepatologist in Mirpur Dhaka | Liver Medicine & Gastroenterology | Prof. Dr. Muhammad Mahbub Hussain',
   author: 'Professor Dr. Muhammad Mahbub Hussain',
   headerTitle: 'Dr. M. Mahbub Hussain',
   description:
-    'Professor Dr. Muhammad Mahbub Hussain is a leading Hepatologist and Gastroenterologist in Dhaka specializing in liver diseases, jaundice, hepatitis, fatty liver, gallstone, and advanced procedures like endoscopy and colonoscopy. For appointments, call 09611530530.',
+    'Prof. Dr. Muhammad Mahbub Hussain — Best Hepatologist in Mirpur Dhaka at Popular Diagnostic Centre. Expert in Liver Medicine, Gastroenterology, Jaundice, Hepatitis, Fatty Liver, Liver Cirrhosis, Endoscopy & Colonoscopy. Book appointment: 09666787807.',
   language: 'en-US',
   theme: 'light', // system, dark or light
   siteUrl: 'https://www.drmahbubhussain.com/',
@@ -89,16 +90,43 @@ const siteMetadata = {
   experience:
     'Founder & former Head of the Department of Rangpur Medical College Hospital. Proud M.B.B.S. student of IPGMR (P.G. Hospital) of second batch. Joined government service from 10th BCS. Achieved M.D. (Hepatology) Degree from B.S.M.M.U. (P.G. hospital) & completed FCPS second part training from Sir Salimullah Medical College & Hospital (MITFORD).',
   keywords: [
+    // Primary specialty + location (most important for ranking)
+    'Hepatologist in Mirpur',
     'Hepatologist in Dhaka',
+    'Best Hepatologist in Dhaka',
+    'Best Hepatologist in Mirpur',
+    'Mirpur Hepatologist',
+    'Popular Diagnostic Mirpur Hepatologist',
+    'Hepatologist Popular Diagnostic Centre Mirpur',
+    'Liver Medicine Mirpur',
+    'Liver Medicine Dhaka',
+    'Gastroenterology Mirpur',
     'Gastroenterologist in Dhaka',
+    'Gastroenterologist in Mirpur',
     'Liver Specialist in Dhaka',
-    'Jaundice Treatment',
+    'Liver Specialist Mirpur',
+    'Liver Doctor Mirpur Dhaka',
+    'Best Liver Doctor in Bangladesh',
+    'Hepatologist Bangladesh',
+    // Bangla local search terms
+    'হেপাটোলজিস্ট মিরপুর',
+    'মিরপুর হেপাটোলজিস্ট',
+    'লিভার বিশেষজ্ঞ মিরপুর',
+    'লিভার বিশেষজ্ঞ ঢাকা',
+    'গ্যাস্ট্রোএন্টারোলজিস্ট ঢাকা',
+    'পপুলার ডায়াগনস্টিক মিরপুর লিভার ডাক্তার',
+    // Conditions treated
+    'Jaundice Treatment Dhaka',
+    'Jaundice Treatment Mirpur',
+    'Jaundice Doctor Mirpur',
     'Hepatitis A, B, C, E Treatment',
     'HBsAg Test and Vaccination',
     'Chronic Liver Disease (CLD)',
     'Liver Cirrhosis Treatment',
     'Liver Abscess Treatment',
     'Fatty Liver Treatment',
+    'Fatty Liver Doctor Dhaka',
+    'Fatty Liver Doctor Mirpur',
     'Pediatric Liver Disease',
     "Gilbert's Syndrome",
     "Wilson's Disease",
@@ -114,13 +142,18 @@ const siteMetadata = {
     'Pancreatitis Treatment',
     'Gallstone Disease Treatment',
     'Bile Duct Stone Treatment',
+    // Procedures
     'Endoscopy in Dhaka',
+    'Endoscopy in Mirpur',
     'Colonoscopy in Dhaka',
+    'Colonoscopy in Mirpur',
     'Endoscopic Band Ligation (EBL)',
     'Ascitic Fluid Study',
-    'Best Liver Doctor in Bangladesh',
+    // Location-based business
     'Gastroenterology Clinic in Dhaka',
     'Liver Specialist in Rangpur',
+    'Liver Clinic Mirpur',
+    'Liver Medicine Specialist Bangladesh',
   ],
 }
 

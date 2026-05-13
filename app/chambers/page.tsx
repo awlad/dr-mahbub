@@ -3,37 +3,33 @@ import Chamber from '@/components/Chamber'
 import siteMetadata from '@/data/siteMetadata'
 
 export const metadata = {
-  title: `চেম্বার ও লোকেশন | Hepatologist Chambers | Liver Specialist in Dhaka & Rangpur | ${siteMetadata.author}`,
+  title: `Hepatologist Chamber in Mirpur Dhaka | Popular Diagnostic Centre | ${siteMetadata.author}`,
   description:
-    "ঢাকা মিরপুর এবং রংপুরে অবস্থিত চেম্বার সমূহে যোগাযোগ করুন। Visit Dr. Mahbub Hussain's consultation chambers at Popular Diagnostic Centre in Dhaka Mirpur and Rangpur for liver and gastroenterology treatment.",
+    "Book appointment with the best Hepatologist in Mirpur Dhaka. Prof. Dr. Muhammad Mahbub Hussain's chamber at Popular Diagnostic Centre, Section-6, Mirpur (Original-10), Pallabi, Dhaka-1216. Call 09666787807. Also available in Rangpur.",
   alternates: {
     canonical: `${siteMetadata.siteUrl}/chambers`,
-    languages: {
-      'en-US': `${siteMetadata.siteUrl}/chambers`,
-      'bn-BD': `${siteMetadata.siteUrl}/chambers`,
-    },
   },
   openGraph: {
-    title: `চেম্বার ও লোকেশন | Chambers & Locations | ${siteMetadata.author}`,
+    title: `Hepatologist Chamber in Mirpur Dhaka | Popular Diagnostic Centre | ${siteMetadata.author}`,
     description:
-      'ঢাকা মিরপুর এবং রংপুরে পপুলার ডায়াগনস্টিক সেন্টারে অবস্থিত চেম্বার সমূহে যোগাযোগ করুন। Consultation chambers at Popular Diagnostic Centre in Dhaka and Rangpur.',
+      "Prof. Dr. Muhammad Mahbub Hussain's chamber at Popular Diagnostic Centre, Mirpur, Dhaka. Book liver & gastroenterology consultation. Call 09666787807.",
     url: `${siteMetadata.siteUrl}/chambers`,
     siteName: siteMetadata.title,
     locale: 'bn_BD',
-    alternateLocale: 'en_US',
     type: 'website',
   },
   keywords: [
+    'Hepatologist chamber Mirpur',
+    'Hepatologist Popular Diagnostic Mirpur',
+    'Liver doctor Mirpur Dhaka',
     'লিভার ডাক্তার ঢাকা মিরপুর',
-    'Liver doctor Dhaka Mirpur',
-    'গ্যাস্ট্রোএন্টারোলজিস্ট রংপুর',
+    'মিরপুর হেপাটোলজিস্ট চেম্বার',
+    'Popular Diagnostic Mirpur Hepatologist',
+    'Dr. Mahbub Hussain chamber Mirpur',
+    'Liver specialist Popular Diagnostic Centre Mirpur',
+    'Gastroenterologist Mirpur Dhaka',
     'Gastroenterologist Rangpur',
-    'পপুলার ডায়াগনস্টিক লিভার স্পেশালিস্ট',
-    'Popular Diagnostic liver specialist',
-    'ডাক্তার মাহবুব হোসেন চেম্বার',
-    'Dr. Mahbub Hussain chamber',
-    'হেপাটোলজিস্ট পপুলার ডায়াগনস্টিক',
-    'Hepatologist Popular Diagnostic',
+    'হেপাটোলজিস্ট পপুলার ডায়াগনস্টিক মিরপুর',
   ],
 }
 
