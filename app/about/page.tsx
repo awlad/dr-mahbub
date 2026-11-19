@@ -1,6 +1,10 @@
 import React from 'react'
 import AboutMe from '@/components/AboutMe'
+import Qualifications from '@/components/qualifications'
 import siteMetadata from '@/data/siteMetadata'
+import { getAboutContent, getQualifications } from '@/lib/content'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: `About Professor Dr. Muhammad Mahbub Hussain | পরিচিতি | Hepatologist in Bangladesh`,
@@ -38,7 +42,9 @@ export const metadata = {
   ],
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [about, qualifications] = await Promise.all([getAboutContent(), getQualifications()])
+
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -262,7 +268,8 @@ export default function AboutPage() {
         </div>
 
         <div className="mx-auto max-w-3xl">
-          <AboutMe />
+          <Qualifications qualifications={qualifications} />
+          <AboutMe content={about.content} image={about.image} />
         </div>
       </div>
     </div>

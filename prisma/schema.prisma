@@ -1,0 +1,110 @@
+// Prisma schema for the admin/CMS-lite content management system.
+// Uses Postgres (Neon free tier) so it works on Vercel's stateless/serverless
+// runtime — SQLite's single-file-on-disk model doesn't survive there
+// (Vercel's filesystem is read-only outside of a per-invocation /tmp).
+// Uploaded images are stored in Vercel Blob (see lib/media.ts), not on disk.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Media library ----------
+// Every uploaded image is tracked here so it can be reused across sections
+// (e.g. pick an already-uploaded photo as the hero image) and safely deleted.
+model MediaAsset {
+  id        String   @id @default(cuid())
+  filename  String
+  path      String // public path, e.g. /static/uploads/xyz.webp
+  altText   String?
+  width     Int?
+  height    Int?
+  sizeBytes Int?
+  createdAt DateTime @default(now())
+
+  achievements  Achievement[]
+  aboutContents AboutContent[]
+  blogPosts     BlogPost[]
+  siteSettings  SiteSettings[]
+}
+
+// ---------- Editable content sections ----------
+
+model Chamber {
+  id           String @id @default(cuid())
+  location     String
+  name         String
+  phone        String
+  address      String
+  schedule     String
+  mapsEmbedUrl String
+  order        Int    @default(0)
+}
+
+model Service {
+  id          String @id @default(cuid())
+  name        String
+  description String
+  order       Int    @default(0)
+}
+
+model Achievement {
+  id          String      @id @default(cuid())
+  title       String
+  year        String?
+  description String?
+  imageId     String?
+  image       MediaAsset? @relation(fields: [imageId], references: [id])
+  order       Int         @default(0)
+}
+
+model Qualification {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  order       Int    @default(0)
+}
+
+// Singleton row (id = "about") for the About Me bio text + optional image.
+model AboutContent {
+  id      String      @id @default("about")
+  content String
+  imageId String?
+  image   MediaAsset? @relation(fields: [imageId], references: [id])
+}
+
+// Singleton row (id = "site") for site-wide settings, incl. the hero image.
+model SiteSettings {
+  id          String      @id @default("site")
+  heroImageId String?
+  heroImage   MediaAsset? @relation(fields: [heroImageId], references: [id])
+}
+
+model BlogPost {
+  id           String      @id @default(cuid())
+  slug         String      @unique
+  title        String
+  summary      String?
+  content      String
+  coverImageId String?
+  coverImage   MediaAsset? @relation(fields: [coverImageId], references: [id])
+  tags         String // comma-separated
+  draft        Boolean     @default(false)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+// ---------- Admin auth ----------
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+

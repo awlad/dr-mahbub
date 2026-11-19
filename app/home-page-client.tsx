@@ -1,6 +1,6 @@
 'use client'
 
-import siteMetadata, { achievements, services } from '@/data/siteMetadata'
+import siteMetadata from '@/data/siteMetadata'
 import Image from '@/components/Image'
 import Achievements from '@/components/achievements'
 import Services from '@/components/services'
@@ -9,6 +9,26 @@ import CopyButton from '@/components/CopyButton'
 import AboutMe from '@/components/AboutMe'
 import LocationMap from '@/components/LocationMap'
 import { useState } from 'react'
+
+type AchievementItem = { title: string; year: string; description: string; image: string | null }
+type ServiceItem = { name: string; description: string }
+type ChamberData = {
+  location: string
+  name: string
+  phone: string
+  address: string
+  schedule: string
+  mapsEmbedUrl: string
+}
+
+type HomePageClientProps = {
+  chambers?: ChamberData[]
+  services?: ServiceItem[]
+  achievements?: AchievementItem[]
+  heroImage?: string | null
+  aboutContent?: string
+  aboutImage?: string | null
+}
 
 const faqItems = [
   {
@@ -113,10 +133,10 @@ const PhoneNumberWithCopy = ({ phone }) => {
   )
 }
 
-const CallForSerial = () => {
+const CallForSerial = ({ chambers }: { chambers: ChamberData[] }) => {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-      {siteMetadata.chambers.map((chamber, index) => {
+      {chambers.map((chamber, index) => {
         const phoneNumbers = chamber.phone.split(',').map((phone) => phone.trim())
 
         return (
@@ -136,14 +156,21 @@ const CallForSerial = () => {
   )
 }
 
-function Version1() {
+function Version1({
+  chambers,
+  services,
+  achievements,
+  heroImage,
+  aboutContent,
+  aboutImage,
+}: HomePageClientProps) {
   return (
     <div className="mx-auto max-w-6xl space-y-20 px-2 sm:px-4 sm:py-8 md:px-6 md:py-12">
       <section className="space-y-12" aria-labelledby="hero-heading">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-5">
           <div className="flex justify-center md:col-span-2">
             <Image
-              src={siteMetadata.siteLogo}
+              src={heroImage || siteMetadata.siteLogo}
               alt={`${siteMetadata.author} — Best Hepatologist in Mirpur Dhaka`}
               width={300}
               height={400}
@@ -182,22 +209,22 @@ function Version1() {
         <h2 className="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
           সিরিয়ালের জন্য যোগাযোগ করুন
         </h2>
-        <CallForSerial />
+        <CallForSerial chambers={chambers ?? []} />
       </section>
-      <Services />
-      <Chamber />
-      <Achievements achievements={achievements} />
-      <AboutMe />
+      <Services services={services} />
+      <Chamber chambers={chambers} />
+      <Achievements achievements={achievements ?? []} />
+      <AboutMe content={aboutContent} image={aboutImage} />
       <FAQSection />
     </div>
   )
 }
 
-export default function HomePageClient() {
+export default function HomePageClient(props: HomePageClientProps) {
   return (
     <div className="relative min-h-screen bg-gray-50 py-6">
       <div className="mx-auto max-w-5xl sm:px-4 md:px-6">
-        <Version1 />
+        <Version1 {...props} />
       </div>
     </div>
   )

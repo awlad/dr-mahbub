@@ -1,0 +1,71 @@
+# Dockerfile.prod — production build (next build + next start).
+# Distinct from the root `Dockerfile`, which is for local development
+# (next dev, bind-mounted source, live reload).
+#
+# NOTE: production now deploys on Vercel (see DEPLOYMENT.md). This image is
+# kept as a fallback self-hosted path; it now targets the same shared
+# Postgres (Neon) + Vercel Blob storage as Vercel, instead of local
+# SQLite/disk, so both paths stay interchangeable.
+
+# ---------- deps (full, for building) ----------
+FROM node:20-alpine AS deps
+WORKDIR /app
+COPY package*.json ./
+COPY prisma ./prisma
+ENV DATABASE_URL="postgresql://user:password@localhost:5432/db"
+RUN npm ci
+
+# ---------- prod-deps (production-only, smaller) ----------
+FROM node:20-alpine AS prod-deps
+WORKDIR /app
+COPY package*.json ./
+COPY prisma ./prisma
+ENV DATABASE_URL="postgresql://user:password@localhost:5432/db"
+# --ignore-scripts: skips the "prepare" (husky) script, which isn't
+# installed without devDependencies anyway. Prisma client is generated
+# explicitly afterwards instead of relying on the postinstall hook.
+RUN npm ci --omit=dev --ignore-scripts && npx prisma generate
+
+# ---------- builder ----------
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV DATABASE_URL="postgresql://user:password@localhost:5432/db"
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
+# ---------- runner ----------
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
+
+# Production-only node_modules (devDependencies like typescript/eslint are
+# not needed at runtime) — but still the full package (not Next's trimmed
+# "standalone" output), so the Prisma CLI + native query-engine binary and
+# `next start` all work reliably.
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/next.config.js ./next.config.js
+COPY --from=builder /app/next.config.cjs ./next.config.cjs
+
+# No local data directories needed anymore — DB (Neon Postgres) and image
+# uploads (Vercel Blob) are both external managed services now.
+RUN chown -R nextjs:nodejs /app
+
+USER nextjs
+EXPOSE 3020
+
+# Apply any pending migrations, then start the production server.
+CMD ["sh", "-c", "npx prisma migrate deploy && npx next start -p 3020"]
+
+
+
+
+

@@ -1,6 +1,9 @@
 import React from 'react'
 import Chamber from '@/components/Chamber'
 import siteMetadata from '@/data/siteMetadata'
+import { getChambers } from '@/lib/content'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: `Hepatologist Chamber in Mirpur Dhaka | Popular Diagnostic Centre | ${siteMetadata.author}`,
@@ -33,7 +36,9 @@ export const metadata = {
   ],
 }
 
-export default function ChambersPage() {
+export default async function ChambersPage() {
+  const chambers = await getChambers()
+
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +52,7 @@ export default function ChambersPage() {
           অধ্যাপক ডাক্তার মুহম্মদ মাহবুব হোসেন এর চেম্বার সমূহ | Consultation chambers of Prof. Dr.
           Muhammad Mahbub Hussain in Dhaka Mirpur and Rangpur
         </p>
-        <Chamber />
+        <Chamber chambers={chambers} />
       </div>
     </div>
   )

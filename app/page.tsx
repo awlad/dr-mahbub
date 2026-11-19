@@ -1,6 +1,11 @@
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import HomePageClient from './home-page-client'
+import { getChambers, getServices, getAchievements, getSiteSettings, getAboutContent } from '@/lib/content'
+
+// Content is DB-backed and editable from /admin, so render dynamically
+// instead of caching a static page at build time.
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title:
@@ -36,6 +41,23 @@ export const metadata: Metadata = {
   ],
 }
 
-export default function Home() {
-  return <HomePageClient />
+export default async function Home() {
+  const [chambers, services, achievements, siteSettings, about] = await Promise.all([
+    getChambers(),
+    getServices(),
+    getAchievements(),
+    getSiteSettings(),
+    getAboutContent(),
+  ])
+
+  return (
+    <HomePageClient
+      chambers={chambers}
+      services={services}
+      achievements={achievements}
+      heroImage={siteSettings.heroImage}
+      aboutContent={about.content}
+      aboutImage={about.image}
+    />
+  )
 }
