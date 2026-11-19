@@ -7,7 +7,15 @@ const MIRPUR_LNG = '90.3658'
 const RANGPUR_LAT = '25.7439'
 const RANGPUR_LNG = '89.2752'
 
-export default function SchemaOrg() {
+type Chamber = {
+  name: string
+  phone: string
+  address: string
+  location: string
+  mapsEmbedUrl: string
+}
+
+export default function SchemaOrg({ chambers }: { chambers: Chamber[] }) {
   const physicianSchema = {
     '@context': 'https://schema.org',
     '@type': 'Physician',
@@ -16,7 +24,7 @@ export default function SchemaOrg() {
     image: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
     description: siteMetadata.description,
     url: siteMetadata.siteUrl,
-    telephone: siteMetadata.chambers[0].phone,
+    telephone: chambers[0]?.phone ?? siteMetadata.chambers[0].phone,
     email: siteMetadata.email?.replace('mailto:', ''),
     jobTitle: 'Professor, Hepatologist & Gastroenterologist',
     medicalSpecialty: [
@@ -65,7 +73,7 @@ export default function SchemaOrg() {
       name: service.name,
       description: service.description,
     })),
-    workLocation: siteMetadata.chambers.map((chamber) => ({
+    workLocation: chambers.map((chamber) => ({
       '@type': 'MedicalClinic',
       name: chamber.name,
       address: {
@@ -90,7 +98,7 @@ export default function SchemaOrg() {
   }
 
   // LocalBusiness schema for each chamber — critical for local/map searches
-  const localBusinessSchemas = siteMetadata.chambers.map((chamber) => {
+  const localBusinessSchemas = chambers.map((chamber) => {
     const isMirpur = !chamber.location.includes('Rangpur')
     return {
       '@context': 'https://schema.org',
@@ -132,7 +140,7 @@ export default function SchemaOrg() {
       areaServed: isMirpur
         ? ['Mirpur', 'Pallabi', 'Kafrul', 'Dhaka', 'Bangladesh']
         : ['Rangpur', 'Bangladesh'],
-      hasMap: chamber.googleMapsEmbedUrl,
+      hasMap: chamber.mapsEmbedUrl,
       medicalSpecialty: ['Hepatology', 'Gastroenterology', 'Liver Medicine'],
     }
   })

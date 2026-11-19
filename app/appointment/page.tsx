@@ -1,6 +1,9 @@
 import React from 'react'
 import AppointmentClient from './AppointmentClient'
 import siteMetadata from '@/data/siteMetadata'
+import { getChambers } from '@/lib/content'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: `সিরিয়াল বুকিং | Book Appointment — Hepatologist Mirpur Dhaka | ${siteMetadata.author}`,
@@ -27,6 +30,7 @@ export const metadata = {
   ],
 }
 
-export default function AppointmentPage() {
-  return <AppointmentClient />
+export default async function AppointmentPage() {
+  const chambers = await getChambers()
+  return <AppointmentClient chambers={chambers} />
 }

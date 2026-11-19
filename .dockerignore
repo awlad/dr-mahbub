@@ -1,0 +1,31 @@
+node_modules
+npm-debug.log*
+
+.next
+.contentlayer
+out
+build
+
+.git
+.github
+.vscode
+.idea
+.devcontainer
+
+# env files are provided at runtime, not baked into the image
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# local DB / uploads — never bake user data into the image
+prisma/*.db
+prisma/*.db-journal
+public/static/uploads/*
+!public/static/uploads/.gitkeep
+
+tsconfig.tsbuildinfo
+*.log
+README.md
+

@@ -1,0 +1,17 @@
+# Caddyfile — automatic HTTPS (Let's Encrypt) + reverse proxy to the app.
+# Replace with your real domain before deploying.
+your-domain.com {
+	encode gzip
+
+	reverse_proxy doctor-site:3020
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	}
+}
+
+# Optional: redirect the bare www subdomain too.
+www.your-domain.com {
+	redir https://your-domain.com{uri} permanent
+}
+

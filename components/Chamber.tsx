@@ -1,7 +1,15 @@
 // components/Chamber.tsx
 'use client'
 import React, { useState } from 'react'
-import siteMetadata from '@/data/siteMetadata'
+
+type ChamberData = {
+  location: string
+  name: string
+  phone: string
+  address: string
+  schedule: string
+  mapsEmbedUrl: string
+}
 
 const PhoneNumberWithCopy = ({ phone }) => {
   const [copied, setCopied] = useState(false)
@@ -30,8 +38,10 @@ const PhoneNumberWithCopy = ({ phone }) => {
   )
 }
 
-const Chamber = () => {
-  const chamberNames = siteMetadata.chambers?.map((c) => c.name).join(', ')
+const Chamber = ({ chambers = [] }: { chambers?: ChamberData[] }) => {
+  const chamberNames = chambers.map((c) => c.name).join(', ')
+
+  if (chambers.length === 0) return null
 
   return (
     <section
@@ -47,7 +57,7 @@ const Chamber = () => {
           চেম্বার ও লোকেশন — {chamberNames}
         </h2>
         <div className="grid gap-10 md:grid-cols-1 lg:grid-cols-2">
-          {siteMetadata.chambers.map((chamber, index) => {
+          {chambers.map((chamber, index) => {
             // Split phone numbers by comma and clean them
             const phoneNumbers = chamber.phone.split(',').map((phone) => phone.trim())
 
@@ -77,7 +87,7 @@ const Chamber = () => {
                 </div>
                 <div className="h-80 w-full">
                   <iframe
-                    src={chamber.googleMapsEmbedUrl}
+                    src={chamber.mapsEmbedUrl}
                     title={`Google Map for ${chamber.name} - ${chamber.location}`}
                     width="100%"
                     height="100%"
@@ -97,3 +107,5 @@ const Chamber = () => {
 }
 
 export default Chamber
+
+

@@ -1,5 +1,3 @@
-import { services } from '@/data/siteMetadata'
-
 const cardColors = [
   'bg-blue-50 border border-blue-200',
   'bg-gray-50 border border-gray-200',
@@ -9,7 +7,9 @@ const cardColors = [
   'bg-cyan-100 border border-cyan-300',
 ]
 
-const ServiceCard = ({ service, color }) => (
+type ServiceItem = { name: string; description: string }
+
+const ServiceCard = ({ service, color }: { service: ServiceItem; color: string }) => (
   <div
     className={`rounded-xl p-6 shadow-md transition-shadow duration-300 hover:shadow-lg ${color}`}
   >
@@ -20,7 +20,15 @@ const ServiceCard = ({ service, color }) => (
   </div>
 )
 
-export default function Services() {
+export default function Services({
+  services = [],
+  header = 'যে সমস্ত রোগের জন্য পরামর্শ দেয়া হয়',
+}: {
+  services?: ServiceItem[]
+  header?: string
+}) {
+  if (services.length === 0) return null
+
   return (
     <section
       id="services"
@@ -32,10 +40,10 @@ export default function Services() {
           id="services-heading"
           className="mb-8 text-center text-3xl font-extrabold text-gray-900 sm:mb-12 sm:text-4xl dark:text-black"
         >
-          {services.header}
+          {header}
         </h2>
         <div className="grid [grid-auto-rows:masonry] grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-          {services.items.map((service, index) => (
+          {services.map((service, index) => (
             <ServiceCard
               key={service.name}
               service={service}

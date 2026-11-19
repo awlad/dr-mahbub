@@ -2,9 +2,17 @@
 
 import React, { useState } from 'react'
 import Chamber from '@/components/Chamber'
-import siteMetadata from '@/data/siteMetadata'
 
-export default function AppointmentClient() {
+type ChamberData = {
+  location: string
+  name: string
+  phone: string
+  address: string
+  schedule: string
+  mapsEmbedUrl: string
+}
+
+export default function AppointmentClient({ chambers = [] }: { chambers?: ChamberData[] }) {
   const [copiedPhone, setCopiedPhone] = useState(null)
 
   const copyToClipboard = (phone) => {
@@ -47,7 +55,7 @@ export default function AppointmentClient() {
           </p>
           <div className="flex justify-center">
             <div className="mx-auto grid max-w-lg grid-cols-1 gap-4 md:grid-cols-2">
-              {siteMetadata.chambers.map((chamber, index) => {
+              {chambers.map((chamber, index) => {
                 const phoneNumbers = chamber.phone.split(',').map((p) => p.trim())
 
                 return phoneNumbers.map((phone, phoneIndex) => (
@@ -72,7 +80,7 @@ export default function AppointmentClient() {
         <h3 className="mb-6 text-center text-xl font-semibold text-gray-800 dark:text-gray-200">
           চেম্বার লোকেশন | Chamber Locations
         </h3>
-        <Chamber />
+        <Chamber chambers={chambers} />
       </div>
     </div>
   )

@@ -75,6 +75,11 @@ module.exports = () => {
           protocol: 'https',
           hostname: 'picsum.photos',
         },
+        {
+          protocol: 'https',
+          // Vercel Blob public store URLs, e.g. xxxxx.public.blob.vercel-storage.com
+          hostname: '*.public.blob.vercel-storage.com',
+        },
       ],
       unoptimized,
     },
