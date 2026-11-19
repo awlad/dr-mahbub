@@ -6,10 +6,10 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionContainer from '@/components/SectionContainer'
 import { ThemeProviders } from '../app/theme-providers'
-import siteMetadata from '@/data/siteMetadata'
 import { AppointmentModalProvider, useAppointmentModal } from '../contexts/AppointmentModalContext'
-import CopyButton from './CopyButton'
 import { useState } from 'react'
+
+type Chamber = { name: string; phone: string; address: string }
 
 const PhoneNumberWithCopy = ({ phone }) => {
   const [copied, setCopied] = useState(false)
@@ -43,7 +43,7 @@ const PhoneNumberWithCopy = ({ phone }) => {
   )
 }
 
-const AppointmentModal = () => {
+const AppointmentModal = ({ chambers }: { chambers: Chamber[] }) => {
   const { showModal, closeModal } = useAppointmentModal()
 
   if (!showModal) return null
@@ -67,7 +67,7 @@ const AppointmentModal = () => {
         </div>
 
         <div className="space-y-6">
-          {siteMetadata.chambers.map((chamber, index) => {
+          {chambers.map((chamber, index) => {
             // Split phone numbers by comma and clean them
             const phoneNumbers = chamber.phone.split(',').map((phone) => phone.trim())
 
@@ -139,7 +139,13 @@ const FloatingAppointmentButton = () => {
   )
 }
 
-export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
+export default function ClientLayoutWrapper({
+  children,
+  chambers,
+}: {
+  children: React.ReactNode
+  chambers: Chamber[]
+}) {
   return (
     <AppointmentModalProvider>
       <ThemeProviders>
@@ -150,7 +156,7 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
           </main>
           <Footer />
         </div>
-        <AppointmentModal />
+        <AppointmentModal chambers={chambers} />
         <FloatingAppointmentButton />
       </ThemeProviders>
     </AppointmentModalProvider>

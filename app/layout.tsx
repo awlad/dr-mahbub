@@ -7,6 +7,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 import SchemaOrg from '@/components/SchemaOrg'
 
 import siteMetadata from '@/data/siteMetadata'
+import { getChambers } from '@/lib/content'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -61,8 +62,12 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const basePath = process.env.BASE_PATH || ''
+  // Fetched here (root layout) so the global "সিরিয়াল দিন" modal — available
+  // on every page via ClientLayoutWrapper — shows live, DB-backed chamber
+  // phone numbers instead of the hardcoded siteMetadata.chambers fallback.
+  const chambers = await getChambers()
 
   return (
     <html className="scroll-smooth" lang="en" suppressHydrationWarning>
@@ -95,10 +100,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
         <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
         {/* Server-rendered structured data — crawlable by Google */}
-        <SchemaOrg />
+        <SchemaOrg chambers={chambers} />
       </head>
       <body suppressHydrationWarning className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
-        <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
+        <ClientLayoutWrapper chambers={chambers}>{children}</ClientLayoutWrapper>
         <GoogleAnalytics />
       </body>
     </html>
