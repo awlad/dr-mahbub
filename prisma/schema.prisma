@@ -9,8 +9,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Migrations (and advisory locks) must run against Neon's direct/unpooled
+  // connection — PgBouncer transaction pooling (the "-pooler" host) doesn't
+  // support session-level advisory locks and causes `prisma migrate deploy`
+  // to hit P1002 timeouts. Set DIRECT_URL in Vercel to the non-pooled
+  // connection string (same host without "-pooler", usually port 5432).
+  directUrl = env("DIRECT_URL")
 }
 
 // ---------- Media library ----------
