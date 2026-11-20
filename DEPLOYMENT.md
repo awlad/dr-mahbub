@@ -40,6 +40,15 @@ added cost**.
      ```
    - `NEXT_PUBLIC_SITE_URL` — your real domain
    - `BLOB_READ_WRITE_TOKEN` is already set automatically by step 2
+   - `NEXT_PUBLIC_CF_BEACON_TOKEN` — (optional) Cloudflare Web Analytics
+     token. Cloudflare's "automatic" beacon injection only fires while the
+     domain's DNS record is proxied (orange-clouded) through Cloudflare —
+     which is commonly turned off (DNS only / grey cloud) once a domain
+     points at Vercel, silently breaking analytics. Get the token from
+     Cloudflare dashboard → **Analytics & Logs → Web Analytics** → your
+     site → "Manage site" → copy the token out of the `data-cf-beacon`
+     snippet. `components/CloudflareAnalytics.tsx` loads the beacon
+     explicitly using this token so it works regardless of proxy status.
 4. **Create tables + generate the first migration** �� run this once,
    locally, against the real Neon DB (all commands run inside the dev
    container):
