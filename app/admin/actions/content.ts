@@ -1,13 +1,21 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 
-function revalidatePublicPages() {
+// Revalidates both the page-level cache (revalidatePath — mostly relevant
+// if a route is ever made static) and the data-level cache (updateTag —
+// the one that actually matters now, since lib/content.ts wraps every DB
+// read in unstable_cache to avoid a Postgres round trip on every request).
+// updateTag (rather than revalidateTag) gives immediate read-your-own-writes
+// semantics from a Server Action, so admin edits show up on the public site
+// right away instead of waiting out the cache's TTL (5 min) safety net.
+function revalidatePublicPages(...tags: string[]) {
   revalidatePath('/')
   revalidatePath('/about')
   revalidatePath('/chambers')
   revalidatePath('/appointment')
+  for (const tag of tags) updateTag(tag)
 }
 
 // ---------- Chambers ----------
@@ -25,7 +33,7 @@ export async function createChamber(formData: FormData) {
       order: (maxOrder._max.order ?? 0) + 1,
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('chambers')
 }
 
 export async function updateChamber(id: string, formData: FormData) {
@@ -40,17 +48,17 @@ export async function updateChamber(id: string, formData: FormData) {
       mapsEmbedUrl: String(formData.get('mapsEmbedUrl') || ''),
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('chambers')
 }
 
 export async function deleteChamber(id: string) {
   await prisma.chamber.delete({ where: { id } })
-  revalidatePublicPages()
+  revalidatePublicPages('chambers')
 }
 
 export async function reorderChamber(id: string, direction: 'up' | 'down') {
   await swapOrder(prisma.chamber, id, direction)
-  revalidatePublicPages()
+  revalidatePublicPages('chambers')
 }
 
 // ---------- Services ----------
@@ -64,7 +72,7 @@ export async function createService(formData: FormData) {
       order: (maxOrder._max.order ?? 0) + 1,
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('services')
 }
 
 export async function updateService(id: string, formData: FormData) {
@@ -75,17 +83,17 @@ export async function updateService(id: string, formData: FormData) {
       description: String(formData.get('description') || ''),
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('services')
 }
 
 export async function deleteService(id: string) {
   await prisma.service.delete({ where: { id } })
-  revalidatePublicPages()
+  revalidatePublicPages('services')
 }
 
 export async function reorderService(id: string, direction: 'up' | 'down') {
   await swapOrder(prisma.service, id, direction)
-  revalidatePublicPages()
+  revalidatePublicPages('services')
 }
 
 // ---------- Achievements ----------
@@ -102,7 +110,7 @@ export async function createAchievement(formData: FormData) {
       order: (maxOrder._max.order ?? 0) + 1,
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('achievements')
 }
 
 export async function updateAchievement(id: string, formData: FormData) {
@@ -116,17 +124,17 @@ export async function updateAchievement(id: string, formData: FormData) {
       imageId,
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('achievements')
 }
 
 export async function deleteAchievement(id: string) {
   await prisma.achievement.delete({ where: { id } })
-  revalidatePublicPages()
+  revalidatePublicPages('achievements')
 }
 
 export async function reorderAchievement(id: string, direction: 'up' | 'down') {
   await swapOrder(prisma.achievement, id, direction)
-  revalidatePublicPages()
+  revalidatePublicPages('achievements')
 }
 
 // ---------- Qualifications ----------
@@ -140,7 +148,7 @@ export async function createQualification(formData: FormData) {
       order: (maxOrder._max.order ?? 0) + 1,
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('qualifications')
 }
 
 export async function updateQualification(id: string, formData: FormData) {
@@ -151,17 +159,17 @@ export async function updateQualification(id: string, formData: FormData) {
       description: String(formData.get('description') || ''),
     },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('qualifications')
 }
 
 export async function deleteQualification(id: string) {
   await prisma.qualification.delete({ where: { id } })
-  revalidatePublicPages()
+  revalidatePublicPages('qualifications')
 }
 
 export async function reorderQualification(id: string, direction: 'up' | 'down') {
   await swapOrder(prisma.qualification, id, direction)
-  revalidatePublicPages()
+  revalidatePublicPages('qualifications')
 }
 
 // ---------- About content (singleton) ----------
@@ -173,7 +181,7 @@ export async function updateAboutContent(formData: FormData) {
     update: { content: String(formData.get('content') || ''), imageId },
     create: { id: 'about', content: String(formData.get('content') || ''), imageId },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('about-content')
 }
 
 // ---------- Site settings (singleton) — hero image ----------
@@ -185,7 +193,7 @@ export async function updateSiteSettings(formData: FormData) {
     update: { heroImageId },
     create: { id: 'site', heroImageId },
   })
-  revalidatePublicPages()
+  revalidatePublicPages('site-settings')
 }
 
 // ---------- Shared reorder helper ----------
