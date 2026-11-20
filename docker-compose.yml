@@ -1,10 +1,8 @@
 services:
   doctor-site:
     build: .
+    restart: unless-stopped
     ports:
       - '3020:3020'
-    volumes:
-      - .:/app
-      - /app/node_modules
     env_file:
       - .env.local

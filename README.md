@@ -213,6 +213,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Edit the layout in `app` or content in `data`. With live reloading, the pages auto-updates as you edit them.
 
+Prefer Docker instead of installing Node locally? See the [Docker](#docker) section below for a hot-reload dev container, or [Deploy with Docker](/faq/deploy-with-docker.md) for the full production + development walkthrough.
+
 ## Extend / Customize
 
 `data/siteMetadata.js` - contains most of the site related information which should be modified for a user's need.
@@ -301,6 +303,42 @@ The easiest way to deploy the template is to deploy on [Vercel](https://vercel.c
 [Netlify](https://www.netlify.com/)’s Next.js runtime configures enables key Next.js functionality on your website without the need for additional configurations. Netlify generates serverless functions that will handle Next.js functionalities such as server-side rendered (SSR) pages, incremental static regeneration (ISR), `next/images`, etc.
 
 See [Next.js on Netlify](https://docs.netlify.com/integrations/frameworks/next-js/overview/#next-js-runtime) for suggested configuration values and more details.
+
+### Docker
+
+Two separate Docker setups are provided — one for **production** and one for **development**. Never run the dev server (`next dev`) inside a production container: it recompiles routes on demand, skips caching/optimization, and can become slow or unresponsive under real traffic.
+
+#### Production
+
+`Dockerfile` is a multi-stage build: it runs `npm run build` (Contentlayer build + `next build`) in a builder stage, then copies only the build output (`node_modules`, `.next`, `public`) into a lean runtime image that starts with `npm run serve` (`next start -p 3020`).
+
+```bash
+# Build & run via compose (recommended)
+docker compose build
+docker compose up -d
+
+# Or plain docker
+docker build -t doctor-site .
+docker run -p 3020:3020 --env-file .env.local doctor-site
+```
+
+`docker-compose.yml` does **not** bind-mount the source directory — the image contains the already-built app, so a fresh `docker compose up -d --build` is required after every code change/deploy.
+
+#### Development (hot reload)
+
+Use `Dockerfile.dev` + `docker-compose.dev.yml` instead. This runs `npm run dev` (Turbopack dev server) and bind-mounts your source code so edits are picked up live, while keeping `node_modules`/`.next` inside the container (not overwritten by the host).
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+Stop it with:
+
+```bash
+docker compose -f docker-compose.dev.yml down
+```
+
+See [Deploy with Docker](/faq/deploy-with-docker.md) for more details.
 
 ### Static hosting services (GitHub Pages / S3 / Firebase etc.)
 

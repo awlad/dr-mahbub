@@ -1,0 +1,25 @@
+# Dockerfile.dev - development mode (hot reload)
+FROM node:20-alpine
+WORKDIR /app
+
+# Install dependencies first (cache layer).
+# node_modules is bind-mounted over by docker-compose.dev.yml at runtime,
+# but we still install here so the image works standalone if needed.
+# Prisma's postinstall (`prisma generate`) needs the schema present, so copy
+# it in before running npm install. A syntactically valid Postgres URL is
+# enough at generate-time — no live DB connection required.
+COPY package*.json ./
+COPY prisma ./prisma
+ENV DATABASE_URL="postgresql://user:password@localhost:5432/db"
+RUN npm install
+
+# Source is bind-mounted in via docker-compose.dev.yml for live editing;
+# this COPY keeps the image usable on its own (e.g. `docker build` without compose).
+COPY . .
+
+EXPOSE 3020
+
+# Run the Next.js dev server (hot reload, on-demand compilation)
+CMD ["npm", "run", "dev"]
+
+

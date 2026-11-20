@@ -1,0 +1,18 @@
+services:
+  doctor-site:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3020:3020'
+    volumes:
+      # Live-reload: mount source into the container
+      - .:/app
+      # Keep the container's own node_modules (don't let the host override it)
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env.local
+    environment:
+      - WATCHPACK_POLLING=true
+
